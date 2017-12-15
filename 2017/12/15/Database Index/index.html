@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>데이터베이스 인덱스 | Gunner</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Database" />
+    
+    <meta name="description" content="Database Index1. 인덱스란?데이터베이스에서 원하는 데이터를 검색하기 위해서는 Full-Scan, 인덱스를 통한 검색이 가능하다. DB의 데이터는 삽입된 순서로 정렬되지 않은 형태로 물리적으로 저장되기 때문에 인덱스가 없을 경우 Full-Scan을 통해 자료를 찾아야 하는 비용 발생이 생긴다. n의 시간이지만 데이터가 수억 단위를 넘어가면 효율이">
+<meta name="keywords" content="Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="데이터베이스 인덱스">
+<meta property="og:url" content="http://xyom.github.io/2017/12/15/Database Index/index.html">
+<meta property="og:site_name" content="Gunner">
+<meta property="og:description" content="Database Index1. 인덱스란?데이터베이스에서 원하는 데이터를 검색하기 위해서는 Full-Scan, 인덱스를 통한 검색이 가능하다. DB의 데이터는 삽입된 순서로 정렬되지 않은 형태로 물리적으로 저장되기 때문에 인덱스가 없을 경우 Full-Scan을 통해 자료를 찾아야 하는 비용 발생이 생긴다. n의 시간이지만 데이터가 수억 단위를 넘어가면 효율이">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg">
+<meta property="og:updated_time" content="2017-12-15T04:59:05.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="데이터베이스 인덱스">
+<meta name="twitter:description" content="Database Index1. 인덱스란?데이터베이스에서 원하는 데이터를 검색하기 위해서는 Full-Scan, 인덱스를 통한 검색이 가능하다. DB의 데이터는 삽입된 순서로 정렬되지 않은 형태로 물리적으로 저장되기 때문에 인덱스가 없을 경우 Full-Scan을 통해 자료를 찾아야 하는 비용 발생이 생긴다. n의 시간이지만 데이터가 수억 단위를 넘어가면 효율이">
+<meta name="twitter:image" content="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="Gunner" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Gunner</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/">CS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/Database/">Database</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/InterView/">InterView</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/">Programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/JavaScript/">JavaScript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/Node-js/">Node js</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CS/Database/">Database</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Database Index" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        데이터베이스 인덱스
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/12/15/Database Index/" class="article-date">
+            <time datetime="2017-12-15T04:59:05.385Z" itemprop="datePublished">2017-12-15</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Database/">Database</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="Database-Index"><a href="#Database-Index" class="headerlink" title="Database Index"></a>Database Index</h2><h4 id="1-인덱스란"><a href="#1-인덱스란" class="headerlink" title="1. 인덱스란?"></a>1. 인덱스란?</h4><h5 id="데이터베이스에서-원하는-데이터를-검색하기-위해서는-Full-Scan-인덱스를-통한-검색이-가능하다-DB의-데이터는-삽입된-순서로-정렬되지-않은-형태로-물리적으로-저장되기-때문에-인덱스가-없을-경우-Full-Scan을-통해-자료를-찾아야-하는-비용-발생이-생긴다-n의-시간이지만-데이터가-수억-단위를-넘어가면-효율이-매우-떨어지게-된다"><a href="#데이터베이스에서-원하는-데이터를-검색하기-위해서는-Full-Scan-인덱스를-통한-검색이-가능하다-DB의-데이터는-삽입된-순서로-정렬되지-않은-형태로-물리적으로-저장되기-때문에-인덱스가-없을-경우-Full-Scan을-통해-자료를-찾아야-하는-비용-발생이-생긴다-n의-시간이지만-데이터가-수억-단위를-넘어가면-효율이-매우-떨어지게-된다" class="headerlink" title="데이터베이스에서 원하는 데이터를 검색하기 위해서는 Full-Scan, 인덱스를 통한 검색이 가능하다. DB의 데이터는 삽입된 순서로 정렬되지 않은 형태로 물리적으로 저장되기 때문에 인덱스가 없을 경우 Full-Scan을 통해 자료를 찾아야 하는 비용 발생이 생긴다. n의 시간이지만 데이터가 수억 단위를 넘어가면 효율이 매우 떨어지게 된다."></a>데이터베이스에서 원하는 데이터를 검색하기 위해서는 Full-Scan, 인덱스를 통한 검색이 가능하다. DB의 데이터는 삽입된 순서로 정렬되지 않은 형태로 물리적으로 저장되기 때문에 인덱스가 없을 경우 Full-Scan을 통해 자료를 찾아야 하는 비용 발생이 생긴다. n의 시간이지만 데이터가 수억 단위를 넘어가면 효율이 매우 떨어지게 된다.</h5><h4 id="2-클러스터드-인덱스-vs-넌클러스터드-인덱스"><a href="#2-클러스터드-인덱스-vs-넌클러스터드-인덱스" class="headerlink" title="2. 클러스터드 인덱스 vs 넌클러스터드 인덱스"></a>2. 클러스터드 인덱스 vs 넌클러스터드 인덱스</h4><h5 id="클러스터드-인덱스-데이터베이스-테이블에-Only-1개만-지정될-수-있는-인덱스이다-보통-Primary-key로-지정하면-이-컬럼은-자동적으로-클러스터드-인덱스가-되어-물리적으로-자동-정렬된다"><a href="#클러스터드-인덱스-데이터베이스-테이블에-Only-1개만-지정될-수-있는-인덱스이다-보통-Primary-key로-지정하면-이-컬럼은-자동적으로-클러스터드-인덱스가-되어-물리적으로-자동-정렬된다" class="headerlink" title="- 클러스터드 인덱스 : 데이터베이스 테이블에 Only 1개만 지정될 수 있는 인덱스이다. 보통 Primary key로 지정하면 이 컬럼은 자동적으로 클러스터드 인덱스가 되어 물리적으로 자동 정렬된다."></a>- 클러스터드 인덱스 : 데이터베이스 테이블에 Only 1개만 지정될 수 있는 인덱스이다. 보통 Primary key로 지정하면 이 컬럼은 자동적으로 클러스터드 인덱스가 되어 물리적으로 자동 정렬된다.</h5><h5 id="클러스터드-인덱스는-정렬되어-있기-때문에-테이블-자체가-인덱스이다"><a href="#클러스터드-인덱스는-정렬되어-있기-때문에-테이블-자체가-인덱스이다" class="headerlink" title="클러스터드 인덱스는 정렬되어 있기 때문에 테이블 자체가 인덱스이다."></a>클러스터드 인덱스는 정렬되어 있기 때문에 테이블 자체가 인덱스이다.</h5><h5 id="넌-클러스터드-인덱스-데이터베이스-테이블에-여러개-지정-할-수-있는-인덱스로-보통의-인덱스를-지칭한다-일반적으로-책을-찾아볼-때-앞의-목차를-통해서-찾아가는-것과-같이-인덱스를-통해-데이터의-위치가-있는-곳을-찾아간다"><a href="#넌-클러스터드-인덱스-데이터베이스-테이블에-여러개-지정-할-수-있는-인덱스로-보통의-인덱스를-지칭한다-일반적으로-책을-찾아볼-때-앞의-목차를-통해서-찾아가는-것과-같이-인덱스를-통해-데이터의-위치가-있는-곳을-찾아간다" class="headerlink" title="- 넌 클러스터드 인덱스 : 데이터베이스 테이블에 여러개 지정 할 수 있는 인덱스로 보통의 인덱스를 지칭한다.      일반적으로 책을 찾아볼 때 앞의 목차를 통해서 찾아가는 것과 같이 인덱스를 통해 데이터의 위치가 있는 곳을 찾아간다."></a>- 넌 클러스터드 인덱스 : 데이터베이스 테이블에 여러개 지정 할 수 있는 인덱스로 보통의 인덱스를 지칭한다.      일반적으로 책을 찾아볼 때 앞의 목차를 통해서 찾아가는 것과 같이 인덱스를 통해 데이터의 위치가 있는 곳을 찾아간다.</h5><h4 id="3-인덱스의-동작-과정"><a href="#3-인덱스의-동작-과정" class="headerlink" title="3. 인덱스의 동작 과정"></a>3. 인덱스의 동작 과정</h4><h5 id="데이터베이스의-테이블은-생성시-frm-myd-myi-로-나뉘어-저장되게-된다"><a href="#데이터베이스의-테이블은-생성시-frm-myd-myi-로-나뉘어-저장되게-된다" class="headerlink" title="- 데이터베이스의 테이블은 생성시 frm, myd, myi 로 나뉘어 저장되게 된다."></a>- 데이터베이스의 테이블은 생성시 frm, myd, myi 로 나뉘어 저장되게 된다.</h5><h5 id="frm-테이블의-구조가-저장되어-있는파일"><a href="#frm-테이블의-구조가-저장되어-있는파일" class="headerlink" title="- frm : 테이블의 구조가 저장되어 있는파일"></a>- frm : 테이블의 구조가 저장되어 있는파일</h5><h5 id="myd-테이블의-실제-데이터가-들어있는-파일"><a href="#myd-테이블의-실제-데이터가-들어있는-파일" class="headerlink" title="- myd : 테이블의 실제 데이터가 들어있는 파일"></a>- myd : 테이블의 실제 데이터가 들어있는 파일</h5><h5 id="myi-Index-정보가-들어있는-파일"><a href="#myi-Index-정보가-들어있는-파일" class="headerlink" title="- myi : Index 정보가 들어있는 파일"></a>- myi : Index 정보가 들어있는 파일</h5><p><img src="http://52.79.231.100:4000/images/1513310688220.PNG" alt="사원"></p>
+<h5 id="사용자가-DB에서-데이터를-찾기-위해-select-from-employee-where-salary-gt-3000-이라는-쿼리를-입력했다고-하자"><a href="#사용자가-DB에서-데이터를-찾기-위해-select-from-employee-where-salary-gt-3000-이라는-쿼리를-입력했다고-하자" class="headerlink" title="사용자가 DB에서 데이터를 찾기 위해 select * from employee where salary&gt;=3000; 이라는 쿼리를 입력했다고 하자."></a>사용자가 DB에서 데이터를 찾기 위해 select * from employee where salary&gt;=3000; 이라는 쿼리를 입력했다고 하자.</h5><h5 id="1-DB는-이-테이블의-myi-파일에-salary에대해-인덱스가-있는지-확인한다"><a href="#1-DB는-이-테이블의-myi-파일에-salary에대해-인덱스가-있는지-확인한다" class="headerlink" title="1. DB는 이 테이블의 myi 파일에 salary에대해 인덱스가 있는지 확인한다."></a>1. DB는 이 테이블의 myi 파일에 salary에대해 인덱스가 있는지 확인한다.</h5><h5 id="2-있을-경우-gt-DB의-인덱스-파일을-기준으로-데이터블록을-찾는다"><a href="#2-있을-경우-gt-DB의-인덱스-파일을-기준으로-데이터블록을-찾는다" class="headerlink" title="2. 있을 경우 -&gt; DB의 인덱스 파일을 기준으로 데이터블록을 찾는다."></a>2. 있을 경우 -&gt; DB의 인덱스 파일을 기준으로 데이터블록을 찾는다.</h5><h5 id="없을-경우-gt-Full-Scan을-통해-조건에-해당하는-컬럼을-모두-검색한다"><a href="#없을-경우-gt-Full-Scan을-통해-조건에-해당하는-컬럼을-모두-검색한다" class="headerlink" title="없을 경우 -&gt; Full Scan을 통해 조건에 해당하는 컬럼을 모두 검색한다."></a>없을 경우 -&gt; Full Scan을 통해 조건에 해당하는 컬럼을 모두 검색한다.</h5><h4 id="4-인덱스의-구조"><a href="#4-인덱스의-구조" class="headerlink" title="4. 인덱스의 구조"></a>4. 인덱스의 구조</h4><p><img src="http://52.79.231.100:4000/images/1513312081189.PNG" alt="이진 검색트리"></p>
+<h5 id="이진-검색-트리"><a href="#이진-검색-트리" class="headerlink" title="이진 검색 트리"></a>이진 검색 트리</h5><p><img src="https://webdocs.cs.ualberta.ca/~holte/T26/Lecture10Fig2.gif" alt="img"></p>
+<p>​                                                         B tree</p>
+<h5 id="인덱스는-데이터의-저장이-B-TREE라는-자료구조로-저장되어-있다-현재는-B-TREE의-많은-부분이-보완된-B-TREE가-사용된다-B-TREE는-Balacned-Tree의-약자로서-자동으로-균형을-맞추어-검색할-수-있는-트리이다"><a href="#인덱스는-데이터의-저장이-B-TREE라는-자료구조로-저장되어-있다-현재는-B-TREE의-많은-부분이-보완된-B-TREE가-사용된다-B-TREE는-Balacned-Tree의-약자로서-자동으로-균형을-맞추어-검색할-수-있는-트리이다" class="headerlink" title="인덱스는 데이터의 저장이 B-TREE라는 자료구조로 저장되어 있다. 현재는 B-TREE의 많은 부분이 보완된 B+ TREE가 사용된다. B-TREE는 Balacned Tree의 약자로서 자동으로 균형을 맞추어 검색할 수 있는 트리이다."></a>인덱스는 데이터의 저장이 B-TREE라는 자료구조로 저장되어 있다. 현재는 B-TREE의 많은 부분이 보완된 B+ TREE가 사용된다. B-TREE는 Balacned Tree의 약자로서 자동으로 균형을 맞추어 검색할 수 있는 트리이다.</h5><h5 id="일반적으로-트리는-검색을-위하여-균형을-맞추는-것이-중요하다-이진-트리의-경우-일반적으로-검색-속도가-log-n-의-시간복잡도를-가지지만-자식이-한쪽으로-편중된-경우-n의-시간을-갖기-때문에-검색속도에-대해서-효율을-얻을-수-없고-트리를-구성하는-비용에-대해-오히려-일반-배열보다-손해를-본다"><a href="#일반적으로-트리는-검색을-위하여-균형을-맞추는-것이-중요하다-이진-트리의-경우-일반적으로-검색-속도가-log-n-의-시간복잡도를-가지지만-자식이-한쪽으로-편중된-경우-n의-시간을-갖기-때문에-검색속도에-대해서-효율을-얻을-수-없고-트리를-구성하는-비용에-대해-오히려-일반-배열보다-손해를-본다" class="headerlink" title="일반적으로 트리는 검색을 위하여 균형을 맞추는 것이 중요하다. 이진 트리의 경우 일반적으로 검색 속도가 log n 의 시간복잡도를 가지지만 자식이 한쪽으로 편중된 경우 n의 시간을 갖기 때문에 검색속도에 대해서 효율을 얻을 수 없고 트리를 구성하는 비용에 대해 오히려 일반 배열보다 손해를 본다."></a>일반적으로 트리는 검색을 위하여 균형을 맞추는 것이 중요하다. 이진 트리의 경우 일반적으로 검색 속도가 log n 의 시간복잡도를 가지지만 자식이 한쪽으로 편중된 경우 n의 시간을 갖기 때문에 검색속도에 대해서 효율을 얻을 수 없고 트리를 구성하는 비용에 대해 오히려 일반 배열보다 손해를 본다.</h5><h5 id="일반적인-이진-검색-트리는-노드의-자식-수가-2개로-제한된다는-점이-있지만-B-Tree는-자식을-최대-m개-까지-가질-수-있는-m원-탐색-트리를-기반으로-설계되었고-자동으로-균형을-맞추어-준다"><a href="#일반적인-이진-검색-트리는-노드의-자식-수가-2개로-제한된다는-점이-있지만-B-Tree는-자식을-최대-m개-까지-가질-수-있는-m원-탐색-트리를-기반으로-설계되었고-자동으로-균형을-맞추어-준다" class="headerlink" title="일반적인 이진 검색 트리는 노드의 자식 수가 2개로 제한된다는 점이 있지만  B-Tree는 자식을 최대 m개 까지 가질 수 있는 m원 탐색 트리를 기반으로 설계되었고 자동으로 균형을 맞추어 준다."></a>일반적인 이진 검색 트리는 노드의 자식 수가 2개로 제한된다는 점이 있지만  B-Tree는 자식을 최대 m개 까지 가질 수 있는 m원 탐색 트리를 기반으로 설계되었고 자동으로 균형을 맞추어 준다.</h5><p> <a href="http://ddmix.blogspot.kr/2015/01/cppalgo-18-b-tree-search.html" target="_blank" rel="noopener">B-TREE</a> -&gt; B tree 참고</p>
+<h5 id="인덱스는-이렇게-B-Tree의-구조로-구성되어-있어서-루트-gt-브랜치-노드-브랜치-노드-gt-리프-노드의-순으로-검색을-계속해-나간다-리프노드에-다다르면-해당-key에-대한-물리-데이터의-주소가-저장되어-있어-이를-통해-데이터에-쉽게-찾아-갈-수-있다"><a href="#인덱스는-이렇게-B-Tree의-구조로-구성되어-있어서-루트-gt-브랜치-노드-브랜치-노드-gt-리프-노드의-순으로-검색을-계속해-나간다-리프노드에-다다르면-해당-key에-대한-물리-데이터의-주소가-저장되어-있어-이를-통해-데이터에-쉽게-찾아-갈-수-있다" class="headerlink" title="인덱스는 이렇게 B-Tree의 구조로 구성되어 있어서 루트 -&gt; 브랜치 노드  브랜치 노드 -&gt; 리프 노드의 순으로 검색을 계속해 나간다. 리프노드에 다다르면 해당 key에 대한 물리 데이터의 주소가 저장되어 있어 이를 통해 데이터에 쉽게 찾아 갈 수 있다."></a>인덱스는 이렇게 B-Tree의 구조로 구성되어 있어서 루트 -&gt; 브랜치 노드  브랜치 노드 -&gt; 리프 노드의 순으로 검색을 계속해 나간다. 리프노드에 다다르면 해당 key에 대한 물리 데이터의 주소가 저장되어 있어 이를 통해 데이터에 쉽게 찾아 갈 수 있다.</h5><h4 id="4-인덱스의-장단점"><a href="#4-인덱스의-장단점" class="headerlink" title="4. 인덱스의 장단점"></a>4. 인덱스의 장단점</h4><h5 id="인덱스의-가장-큰-장점이라고-하면-검색-속도이다-인덱스를-구성하면-적절한-인덱스를-선택하여-검색했을-때-일반적으로-Full-Scan해서-검색하는-것보다-상당히-빠른-검색효율을-보일-수-있다"><a href="#인덱스의-가장-큰-장점이라고-하면-검색-속도이다-인덱스를-구성하면-적절한-인덱스를-선택하여-검색했을-때-일반적으로-Full-Scan해서-검색하는-것보다-상당히-빠른-검색효율을-보일-수-있다" class="headerlink" title="- 인덱스의 가장 큰 장점이라고 하면 검색 속도이다. 인덱스를 구성하면 적절한 인덱스를 선택하여 검색했을 때 일반적으로 Full Scan해서 검색하는 것보다 상당히 빠른 검색효율을 보일 수 있다."></a>- 인덱스의 가장 큰 장점이라고 하면 검색 속도이다. 인덱스를 구성하면 적절한 인덱스를 선택하여 검색했을 때 일반적으로 Full Scan해서 검색하는 것보다 상당히 빠른 검색효율을 보일 수 있다.</h5><h5 id="하지만-인덱스는-검색-속도라는-장점을-가진-대신-단점도-많이-가지고-있다"><a href="#하지만-인덱스는-검색-속도라는-장점을-가진-대신-단점도-많이-가지고-있다" class="headerlink" title="- 하지만 인덱스는 검색 속도라는 장점을 가진 대신 단점도 많이 가지고 있다."></a>- 하지만 인덱스는 검색 속도라는 장점을 가진 대신 단점도 많이 가지고 있다.</h5><h5 id="1-인덱스-파일을-구성하는데에-비용이-들고-용량을-차지-하게된다"><a href="#1-인덱스-파일을-구성하는데에-비용이-들고-용량을-차지-하게된다" class="headerlink" title="1. 인덱스 파일을 구성하는데에 비용이 들고 용량을 차지 하게된다."></a>1. 인덱스 파일을 구성하는데에 비용이 들고 용량을 차지 하게된다.</h5><h5 id="gt-실질적으로-데이터가-삽입되면-데이터에-대한-인덱스-또한-추가해주어야-하기-때문에-비용이-들고-이-인덱스-파일을-구성하는데에-용량을-차지하게-된다"><a href="#gt-실질적으로-데이터가-삽입되면-데이터에-대한-인덱스-또한-추가해주어야-하기-때문에-비용이-들고-이-인덱스-파일을-구성하는데에-용량을-차지하게-된다" class="headerlink" title="-&gt; 실질적으로 데이터가 삽입되면 데이터에 대한 인덱스 또한 추가해주어야 하기 때문에 비용이 들고 이 인덱스 파일을 구성하는데에 용량을 차지하게 된다."></a>-&gt; 실질적으로 데이터가 삽입되면 데이터에 대한 인덱스 또한 추가해주어야 하기 때문에 비용이 들고 이 인덱스 파일을 구성하는데에 용량을 차지하게 된다.</h5><p>#####2. DML(Insert, delete)에 약하다. </p>
+<h5 id="gt-데이터-변경-작업-Insert-delete-가-자주-일어날-경우-인덱스를-재작성해야-한다"><a href="#gt-데이터-변경-작업-Insert-delete-가-자주-일어날-경우-인덱스를-재작성해야-한다" class="headerlink" title="-&gt;데이터 변경 작업(Insert,delete)가 자주 일어날 경우 인덱스를 재작성해야 한다."></a>-&gt;데이터 변경 작업(Insert,delete)가 자주 일어날 경우 인덱스를 재작성해야 한다.</h5><h5 id="gt-insert는-data가-저장되어-있는-기존-블록에-여유-공간이-없는-상황에서-그-블록에-새로운-데이터가-입력되어야-할-경우-블록을-새로-할당하고-기존에-있던-블록의-key-value들을-옮기는-과정들을-수행하기-때문에-매우-많은-비용을-소모하게-된다-Index-Split"><a href="#gt-insert는-data가-저장되어-있는-기존-블록에-여유-공간이-없는-상황에서-그-블록에-새로운-데이터가-입력되어야-할-경우-블록을-새로-할당하고-기존에-있던-블록의-key-value들을-옮기는-과정들을-수행하기-때문에-매우-많은-비용을-소모하게-된다-Index-Split" class="headerlink" title="-&gt; insert는 data가 저장되어 있는 기존 블록에 여유 공간이 없는 상황에서 그 블록에 새로운 데이터가 입력되어야 할 경우 블록을 새로 할당하고 기존에 있던 블록의 key value들을 옮기는 과정들을 수행하기 때문에 매우 많은 비용을 소모하게 된다. (Index Split)"></a>-&gt; insert는 data가 저장되어 있는 기존 블록에 여유 공간이 없는 상황에서 그 블록에 새로운 데이터가 입력되어야 할 경우 블록을 새로 할당하고 기존에 있던 블록의 key value들을 옮기는 과정들을 수행하기 때문에 매우 많은 비용을 소모하게 된다. (Index Split)</h5><h5 id="gt-delete의-경우-데이터가-삭제되면-인덱스파일은-데이터가-삭제되지-않고-사용되지-않음으로-표시된다-100만이었던-데이터를-지워-10만개-남았더라도-인덱스는-100만건이-존재하므로-인덱스를-사용해도-수행속도를-기대하기-힘들-수-있다"><a href="#gt-delete의-경우-데이터가-삭제되면-인덱스파일은-데이터가-삭제되지-않고-사용되지-않음으로-표시된다-100만이었던-데이터를-지워-10만개-남았더라도-인덱스는-100만건이-존재하므로-인덱스를-사용해도-수행속도를-기대하기-힘들-수-있다" class="headerlink" title="-&gt; delete의 경우 데이터가 삭제되면 인덱스파일은 데이터가 삭제되지 않고 사용되지 않음으로 표시된다. 100만이었던 데이터를 지워 10만개 남았더라도 인덱스는 100만건이 존재하므로 인덱스를 사용해도 수행속도를 기대하기 힘들 수 있다."></a>-&gt; delete의 경우 데이터가 삭제되면 인덱스파일은 데이터가 삭제되지 않고 사용되지 않음으로 표시된다. 100만이었던 데이터를 지워 10만개 남았더라도 인덱스는 100만건이 존재하므로 인덱스를 사용해도 수행속도를 기대하기 힘들 수 있다.</h5><p>#####-&gt; update의 경우 인덱스에 update라는 개념이 없으므로 테이블에 update가 발생할 경우 인덱스에는 delete, insert 두가지 작업이 실행되므로 가장 큰 부하를 일으킨다.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://xyom.github.io/2017/12/15/Database Index/" data-id="cjb7g2bxz0000o7qrgvpdkri2" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/12/10/Closer/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">오래된</strong>
+        <p class="article-nav-title">JavaScript 스코프와 클로저</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">최근 글</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/15/Database Index/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="데이터베이스 인덱스" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/Database/">Database</a></p>
+                            <p class="item-title"><a href="/2017/12/15/Database Index/" class="title">데이터베이스 인덱스</a></p>
+                            <p class="item-date"><time datetime="2017-12-15T04:59:05.385Z" itemprop="datePublished">2017-12-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/10/Closer/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="JavaScript 스코프와 클로저" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/12/10/Closer/" class="title">JavaScript 스코프와 클로저</a></p>
+                            <p class="item-date"><time datetime="2017-12-10T09:30:11.762Z" itemprop="datePublished">2017-12-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/10/Request와 Cheerio/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="Node js request와 cheerio" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Node-js/">Node js</a></p>
+                            <p class="item-title"><a href="/2017/12/10/Request와 Cheerio/" class="title">Node js request와 cheerio</a></p>
+                            <p class="item-date"><time datetime="2017-12-10T08:50:21.547Z" itemprop="datePublished">2017-12-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/08/면접( 프로젝트 관련 질문)/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="프로젝트 관련 질문" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/InterView/">InterView</a></p>
+                            <p class="item-title"><a href="/2017/12/08/면접( 프로젝트 관련 질문)/" class="title">프로젝트 관련 질문</a></p>
+                            <p class="item-date"><time datetime="2017-12-08T08:47:39.918Z" itemprop="datePublished">2017-12-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/08/Node js 동작 원리/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="Node js 동작 원리" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Node-js/">Node js</a></p>
+                            <p class="item-title"><a href="/2017/12/08/Node js 동작 원리/" class="title">Node js 동작 원리</a></p>
+                            <p class="item-date"><time datetime="2017-12-08T08:47:39.898Z" itemprop="datePublished">2017-12-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/Database/">Database</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/InterView/">InterView</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Node-js/">Node js</a><span class="category-list-count">3</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12월 2017</a><span class="archive-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">태그</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/InterView/">InterView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node js</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/InterView/" style="font-size: 10px;">InterView</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 20px;">Node js</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 SuHawn Yun</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://xyom.github.io/2017/12/15/Database Index/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
