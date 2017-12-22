@@ -3,25 +3,25 @@
 <head>
     <meta charset="utf-8">
     
-    <title>JavaScript 스코프와 클로저 | Gunner</title>
+    <title>Database 정규화 | Gunner</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="JavaScript" />
+        <meta name="keywords" content="Database" />
     
-    <meta name="description" content="JavaScript 스코프   JavaScript에서 스코프란 변수가 어느 지역에서 유효한 것을 의미하는 중요한 개념이다. JavaScript는 함수를 기반으로 설계 되었기 때문에 기본적으로 함수 레벨의 스코프를 따르게 되는데 이는 C++, JAVA의 변수 유효범위와는 차이를 보인다.  123456789void getArea(bool condition,i">
-<meta name="keywords" content="JavaScript">
+    <meta name="description" content="Database 정규화1. 데이터베이스 정규화의 목적 삽입, 삭제, 갱신의 이상 현상을 방지한다. -&amp;gt; 이상 현상이란? 데이터의 삽입, 삭제, 갱신을 하면서 불필요한 정보가 삭제되거나 삽입되고 갱신시 일부만 변경되어 데이터의 일관성이 없어지는 현상이다.   삽입 이상:  만약 위와 같은 테이블에 이름과 학번의 정보만 넣고 싶은 경우 주소, 전공, 담당">
+<meta name="keywords" content="Database">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript 스코프와 클로저">
-<meta property="og:url" content="http://xyom.github.io/2017/12/10/Closer/index.html">
+<meta property="og:title" content="Database 정규화">
+<meta property="og:url" content="http://xyom.github.io/2017/12/22/Database 정규화/index.html">
 <meta property="og:site_name" content="Gunner">
-<meta property="og:description" content="JavaScript 스코프   JavaScript에서 스코프란 변수가 어느 지역에서 유효한 것을 의미하는 중요한 개념이다. JavaScript는 함수를 기반으로 설계 되었기 때문에 기본적으로 함수 레벨의 스코프를 따르게 되는데 이는 C++, JAVA의 변수 유효범위와는 차이를 보인다.  123456789void getArea(bool condition,i">
+<meta property="og:description" content="Database 정규화1. 데이터베이스 정규화의 목적 삽입, 삭제, 갱신의 이상 현상을 방지한다. -&amp;gt; 이상 현상이란? 데이터의 삽입, 삭제, 갱신을 하면서 불필요한 정보가 삭제되거나 삽입되고 갱신시 일부만 변경되어 데이터의 일관성이 없어지는 현상이다.   삽입 이상:  만약 위와 같은 테이블에 이름과 학번의 정보만 넣고 싶은 경우 주소, 전공, 담당">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg">
-<meta property="og:updated_time" content="2017-12-10T09:30:11.762Z">
+<meta property="og:updated_time" content="2017-12-22T10:16:19.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript 스코프와 클로저">
-<meta name="twitter:description" content="JavaScript 스코프   JavaScript에서 스코프란 변수가 어느 지역에서 유효한 것을 의미하는 중요한 개념이다. JavaScript는 함수를 기반으로 설계 되었기 때문에 기본적으로 함수 레벨의 스코프를 따르게 되는데 이는 C++, JAVA의 변수 유효범위와는 차이를 보인다.  123456789void getArea(bool condition,i">
+<meta name="twitter:title" content="Database 정규화">
+<meta name="twitter:description" content="Database 정규화1. 데이터베이스 정규화의 목적 삽입, 삭제, 갱신의 이상 현상을 방지한다. -&amp;gt; 이상 현상이란? 데이터의 삽입, 삭제, 갱신을 하면서 불필요한 정보가 삭제되거나 삽입되고 갱신시 일부만 변경되어 데이터의 일관성이 없어지는 현상이다.   삽입 이상:  만약 위와 같은 테이블에 이름과 학번의 정보만 넣고 싶은 경우 주소, 전공, 담당">
 <meta name="twitter:image" content="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg">
     
 
@@ -135,18 +135,18 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Programming/JavaScript/">JavaScript</a>
+    <a class="page-title-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CS/Database/">Database</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Closer" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-Database 정규화" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        JavaScript 스코프와 클로저
+        Database 정규화
         </h1>
     
 
@@ -156,54 +156,67 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/12/10/Closer/" class="article-date">
-            <time datetime="2017-12-10T09:30:11.762Z" itemprop="datePublished">2017-12-10</time>
+        <a href="/2017/12/22/Database 정규화/" class="article-date">
+            <time datetime="2017-12-22T10:16:19.871Z" itemprop="datePublished">2017-12-22</time>
         </a>
     </div>
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+        <a class="tag-link" href="/tags/Database/">Database</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png" alt=""></p>
-<h2 id="JavaScript-스코프"><a href="#JavaScript-스코프" class="headerlink" title="JavaScript 스코프"></a>JavaScript 스코프</h2><p>   JavaScript에서 스코프란 변수가 어느 지역에서 유효한 것을 의미하는 중요한 개념이다. JavaScript는 함수를 기반으로 설계 되었기 때문에 기본적으로 함수 레벨의 스코프를 따르게 되는데 이는 C++, JAVA의 변수 유효범위와는 차이를 보인다.</p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getArea</span><span class="params">(<span class="keyword">bool</span> condition,<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(condition)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> temp = <span class="number">3</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> temp * x * y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getArea</span>(<span class="params">condition, x, y</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(condition)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">var</span> temp =<span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> temp * x * y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 첫번째는 C, 두번째는 JavaScript에서의 경우의 함수이다. 위의 결과를 실행하게 된다면 C에서는 당연히 컴파일 에러가 날 것이다. 하지만 Javascript는 문제없이 실행 되고 3 <em> x </em> y라는 결과를 반환한다.</p>
-<p> C, Java에서는 블록에서 선언한 변수가 블록 내에서 유효한 반면 JavaScript는 함수 레벨 스코프를 가지기 때문에 if 안에서 선언한 temp 변수도 getArea라는 함수에 속하는 변수로 판단된다.</p>
-<p> 이와 같은 성질은 평소에 C나 JAVA를 해왔던 프로그래머들에게 익숙하지 않은 개념이고 ECMA6부터는 let과 const라는 블록레벨 스코프를 지원한다. let은 우리가 늘 쓰던 지역변수이고 const는 블록레벨 상수 변수이다. </p>
-<h2 id="실행-컨텍스트"><a href="#실행-컨텍스트" class="headerlink" title="실행 컨텍스트"></a>실행 컨텍스트</h2><p>  실행 컨텍스트는 실행가능한 코드가 실행되는 환경이다. 자바스크립트 엔진은 코드를 실행하기 위해 실행에 필요한 여러가지 정보를 알고 있어야 한다. 실행에 필요한 정보는 아래와 같은 것들이 있다.</p>
+            <h2 id="Database-정규화"><a href="#Database-정규화" class="headerlink" title="Database 정규화"></a>Database 정규화</h2><h4 id="1-데이터베이스-정규화의-목적"><a href="#1-데이터베이스-정규화의-목적" class="headerlink" title="1. 데이터베이스 정규화의 목적"></a>1. 데이터베이스 정규화의 목적</h4><ul>
+<li><p>삽입, 삭제, 갱신의 이상 현상을 방지한다.</p>
+<p>-&gt; 이상 현상이란? 데이터의 삽입, 삭제, 갱신을 하면서 불필요한 정보가 삭제되거나 삽입되고 갱신시 일부만 변경되어 데이터의 일관성이 없어지는 현상이다.</p>
+<p><img src="http://52.79.231.100:4000/images/1513934636493.PNG" alt=""></p>
 <ul>
-<li>변수 : 전역 변수, 지역 변수, 매개변수, 객체의 프로퍼티</li>
-<li>함수 선언</li>
-<li>변수의 유효 범위</li>
-<li>this</li>
+<li><p>삽입 이상:  만약 위와 같은 테이블에 이름과 학번의 정보만 넣고 싶은 경우 주소, 전공, 담당 교수에 대한 정보까지 넣어야한다. Null이 들어가게 되도 불필요한 저장공간을 차지하게 된다.</p>
+</li>
+<li><p>삭제 이상: 김공대 교수가 은퇴하여 김공대 교수만 삭제하고 싶어 김공대 교수를 담당 교수로 가지게 된 튜플을 삭제하게 되면 불필요한 다른 학생들의 정보까지 삭제된다.</p>
+</li>
+<li><p>갱신 이상:  컴퓨터공학의 담당교수를 모두 김공대 교수로 바꾸고 싶지만 일괄적으로 갱신이 되지 않을 수 있다.</p>
+<p>​</p>
+</li>
 </ul>
-<p>실행 컨텍스트는 객체와 같이 만들어져서 실행 도중 새로운 컨텍스트(함수)를 만나면 스택을 쌓아 새로운 컨텍스트를 호출한다.  이와 같이 실행 컨텍스트는 스택에 쌓여 호출 되면 쌓이고 실행이 완료되면 pop되는 구조를 가지고 있다.</p>
-<p>실행 컨텍스트에는 객체화 하여 3가지의 프로퍼티를 소유한다.</p>
+</li>
+<li><p>데이터의 중복을 최소화 한다</p>
+</li>
+<li><p>정보의 일관성을 보장한다.</p>
+</li>
+</ul>
+<h4 id="2-데이터-베이스-정규화"><a href="#2-데이터-베이스-정규화" class="headerlink" title="2. 데이터 베이스 정규화"></a>2. 데이터 베이스 정규화</h4><p> 데이터베이스의 정규화에는 제1정규형~제5정규형까지 존재한다. 하지만 보통 제 3정규형까지 적용하여 데이터베이스를 설계한다.</p>
 <ul>
-<li>VO (변수 , 함수선언, 인자 등)</li>
-<li>Scope Chain (변수 오브젝트 + 모든 부모의 스코프)</li>
-<li>this (함수의 호출에 의해 결정되는 this)</li>
+<li>제 1정규형 : 도메인이 원자 값</li>
 </ul>
-<h2 id="스코프-체인"><a href="#스코프-체인" class="headerlink" title="스코프 체인"></a>스코프 체인</h2><p><img src="http://poiemaweb.com/img/ec-sc.png" alt="ScopeChain"></p>
-<p>스코프 체인은 일종의 리스트로 함수의 스코프 레퍼런스를 차례로 저장하고 있는 개념이다. 즉 스코프 체인은 현재 실행 컨텍스트의 AO를 선두로 상위 컨텍스트의 AO를 모두 가르키는 레퍼런스 테이블을 만든다.</p>
-<p>실행 컨텍스트가 전역일 경우 이는 VO는 유일한 GO(Global Ovject)를 가르키게 된다. 또한 실행 컨텍스트 중 foo()라는 함수가 만나면 스택에 실행 컨텍스트가 쌓이고  foo()의 스코프에 해당하는 변수, 함수선언들에 대한 AO를 만들게 된다. foo()의 스코프 체인은 0번째는 자신의 AO를 가르키고 그다음은 자신의 상위 부모를 가르키게 된다.</p>
-<p>(만약 부모가 여러명이라면 모든 부모를 가르킬 때 까지 스코프 체인을 이어나간다.)</p>
-<h2 id="클로저"><a href="#클로저" class="headerlink" title="클로저"></a>클로저</h2><p>  클로저는 내부함수가 참조하는 외부함수의 지역변수가 외부함수에 의해 내부함수가 반환된 이후에도 life-cycle이 유지되는 것을 의미한다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">var</span> innerFunc = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(x); &#125;;</span><br><span class="line">  <span class="keyword">return</span> innerFunc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수 outerFunc를 호출하면 내부 함수 innerFunc가 반환된다. 그리고 함수 outerFunc의 실행 컨텍스트는 소멸한다</span></span><br><span class="line"><span class="keyword">var</span> inner = outerFunc();</span><br><span class="line">inner();</span><br></pre></td></tr></table></figure>
-<p> 위의 코드에서 outerFunc()을 호출하여 innerFunc을 받아 전역 변수 inner에 저장하고 inner를 실행한다. 그렇다면 cosole.log(x)에 x가 찍힐까? </p>
-<p> -&gt; 그렇다</p>
-<p> 자바 스크립트는 함수 레벨 스코프를 가진다면서 왜 x의 값은 사라지지 않고 내부함수가 이를 참조하여 출력할 수 있을까?  이를 이해하려면 위에서의 실행컨텍스트를 이해하고 있어야 한다.</p>
-<p><img src="http://poiemaweb.com/img/closure.png" alt=""></p>
-<p> 위의 실행 컨텍스트에서 보면 이를 이해할 수 있다. outerFunc()은 실행 후 실행 컨텍스트에서 종료되어 그 실행 컨텍스트는 없어진다. 하지만 inner function의 스코프 체인이 outerFunc()의 AO를 가르키고 있어 AO 내부의 변수 x에 참조가 가능한 것이다. </p>
-<p>-&gt; <strong>다시 말하면 실행 컨텍스트는 사라져도 AO는 바로 사라지지 않는다. 자신을 참조하고 있는 개체가 하나이상이라면 AO는 가비지 콜렉터에 의해 소멸되지 않는다.</strong></p>
+<p><img src="http://52.79.231.100:4000/images/1513936427831.PNG" alt=""></p>
+<p>  제 1정규형에서 도메인이 원자값이라는 것은 한 도메인에 알맞은 값으로 하나 존재해야 한다는 것을 뜻한다. 위와 같은 테이블에서 과목이라는 테이블을 저장하기 위해 과목 1,과목2,과목 3과 같은 컬럼이 있는 것이나 과목 이라는 컬럼에 {수학,영어,국어}와 같이 한번에 여러 값들이 들어갈 수 없고 하나의 값이 들어간다.</p>
+<p>​                                            <img src="http://52.79.231.100:4000/images/1513936667835.PNG" alt=""> </p>
+<p> -&gt; 다음과 같이 과목이라는 컬럼에 수학,영어, 국어가 들어가게 되지만 이름,학번,학과, 학과장이 중복되게 된다.</p>
+<ul>
+<li><p>제 2 정규형 : 완전 함수종속(부분적 함수 종속 제거)</p>
+<p>제 1정규형을 만족하는 테이블이고 부분적 함수 종속성을 제거한다. 학번 -&gt; 이름 으로 학생을 결정할 수 있고 학번 -&gt; 학과, 학과장, 학번 -&gt; 수강과목 으로 키 값으로 결정할 수 있는 부분적 요소들이 존재하면 이를 테이블로 나눈다.</p>
+<p><img src="http://52.79.231.100:4000/images/1513937197245.PNG" alt=""></p>
+</li>
+</ul>
+<p>​      테이블에서 존재하는 키값으로는 하나의 유일한 튜플을 식별할 수 있어야하며 부분적인 키값으로 식별할 수 있는 요소가 있다면 이를 나누게 된다. 위 테이블은 학번에 의해 결정되는 이름, 학과, 과목에 대한 부분적인 요소들을 테이블로 나눈 결과이다.</p>
+<ul>
+<li><p>제 3정규형 : 이행적 함수 종속성 제거</p>
+<p>제 3정규형은 2정규형을 만족하고 이행적 함수 종속성을 제거한다 . 이행적 함수 종속성이란 A-&gt; B 이면 B-&gt;C이게 된다는 조건을 없애는 것이다. 위의 테이블에서 학번을 알면 학과를 알 수 있고 학과를 알면 학과장을 알수 있으니 이행적 함수 종속성이 존재하게 된다. 이를 분리하여  아래와 같은 테이블 처럼 만든다.</p>
+</li>
+</ul>
+<p><img src="http://52.79.231.100:4000/images/1513937365888.PNG" alt=""></p>
+<ul>
+<li>제 4정규형: 다치 종속성 제거</li>
+<li>제 5정규형: 조인 종속성 제거</li>
+</ul>
+<h4 id="3-역정규화"><a href="#3-역정규화" class="headerlink" title="3. 역정규화"></a>3. 역정규화</h4><p> 데이터베이스의 정규화를 하게 되면 테이블이 나뉘는 경우가 많다. 이 경우 데이터의 조회는 조인을 통한 조회를 하게 되는데 방대한 양의 데이터를 조인하게 되면 시스템에 과부하가 걸릴 가능성이 높다.</p>
+<p> 이를 피하기 위해 나뉘어진 테이블을 다시 하나의 테이블로 합치는 과정이 필요하게 되는데 이를 역정규화라고 한다. </p>
 
         </div>
         <footer class="article-footer">
@@ -211,7 +224,7 @@
 
 
 
-    <a data-url="http://xyom.github.io/2017/12/10/Closer/" data-id="cjbhrh7da00015pqrmxxuzt9a" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+    <a data-url="http://xyom.github.io/2017/12/22/Database 정규화/" data-id="cjbhrh7d100005pqrzj7wktiv" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -348,20 +361,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/12/15/Database Index/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">새로운</strong>
-        <p class="article-nav-title">
-        
-            데이터베이스 인덱스
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/12/10/Request와 Cheerio/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/12/15/Database Index/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">오래된</strong>
-        <p class="article-nav-title">Node js request와 cheerio</p>
+        <p class="article-nav-title">데이터베이스 인덱스</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -564,7 +567,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://xyom.github.io/2017/12/10/Closer/';
+    var disqus_url = 'http://xyom.github.io/2017/12/22/Database 정규화/';
     
     (function() {
     var dsq = document.createElement('script');
