@@ -139,7 +139,18 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Node js 동작 원리" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- HexoBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="2672997128"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+				<article id="post-Node js 동작 원리" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -178,12 +189,23 @@
 <h5 id="Node-Js는-기본적으로-V8엔진을-통해-Single-Thread로-동작하게-된다-하지만-Node-js의-특성상-비동기식-I-O를-채택하고-있기-때문에-어떠한-I-O가-발생하게-되면-libio의-ThreadPool에-작업을-전달하게-되고-I-O가-완료되게-되면-EventQueue에-CallBack-함수가-쌓이게-된다"><a href="#Node-Js는-기본적으로-V8엔진을-통해-Single-Thread로-동작하게-된다-하지만-Node-js의-특성상-비동기식-I-O를-채택하고-있기-때문에-어떠한-I-O가-발생하게-되면-libio의-ThreadPool에-작업을-전달하게-되고-I-O가-완료되게-되면-EventQueue에-CallBack-함수가-쌓이게-된다" class="headerlink" title="Node Js는 기본적으로 V8엔진을 통해 Single Thread로 동작하게 된다. 하지만 Node js의 특성상 비동기식 I/O를 채택하고 있기 때문에 어떠한 I/O가 발생하게 되면 libio의 ThreadPool에 작업을 전달하게 되고 I/O가 완료되게 되면 EventQueue에 CallBack 함수가 쌓이게 된다."></a>Node Js는 기본적으로 V8엔진을 통해 Single Thread로 동작하게 된다. 하지만 Node js의 특성상 비동기식 I/O를 채택하고 있기 때문에 어떠한 I/O가 발생하게 되면 libio의 ThreadPool에 작업을 전달하게 되고 I/O가 완료되게 되면 EventQueue에 CallBack 함수가 쌓이게 된다.</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">connection.query(<span class="string">'insert into table values('</span><span class="number">2</span><span class="string">','</span><span class="number">3</span><span class="string">')'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">result,err</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h5 id="만약-위와-같이-DB-Connection을-통해-DB에-쿼리를-날리는-경우가-발생하면-‘insert-‘문에-대한-DB-IO가-발생하게-된다-Node-js는-이-작업에-대해-완료될-때-까지-기다리지-않고-다른-작업을-처리하고-있다가-I-O가-완료되면-callback-함수를-EventQueue에-집어-넣는다-EventLoop는-항상-돌고-있다가-V8-엔진의-호출스택이-모두-종료-모든-작업을-실행하고-남아-있는-작업이-없을-경우-EventQueue에서-작업을-꺼내어-처리하게-된다"><a href="#만약-위와-같이-DB-Connection을-통해-DB에-쿼리를-날리는-경우가-발생하면-‘insert-‘문에-대한-DB-IO가-발생하게-된다-Node-js는-이-작업에-대해-완료될-때-까지-기다리지-않고-다른-작업을-처리하고-있다가-I-O가-완료되면-callback-함수를-EventQueue에-집어-넣는다-EventLoop는-항상-돌고-있다가-V8-엔진의-호출스택이-모두-종료-모든-작업을-실행하고-남아-있는-작업이-없을-경우-EventQueue에서-작업을-꺼내어-처리하게-된다" class="headerlink" title="만약 위와 같이 DB Connection을 통해 DB에 쿼리를 날리는 경우가 발생하면 ‘insert ‘문에 대한 DB IO가 발생하게 된다. Node js는 이 작업에 대해 완료될 때 까지 기다리지 않고 다른 작업을 처리하고 있다가 I/O가 완료되면 callback 함수를 EventQueue에 집어 넣는다. EventLoop는 항상 돌고 있다가 V8 엔진의 호출스택이 모두 종료(모든 작업을 실행하고 남아 있는 작업이 없을 경우) EventQueue에서 작업을 꺼내어 처리하게 된다."></a>만약 위와 같이 DB Connection을 통해 DB에 쿼리를 날리는 경우가 발생하면 ‘insert ‘문에 대한 DB IO가 발생하게 된다. Node js는 이 작업에 대해 완료될 때 까지 기다리지 않고 다른 작업을 처리하고 있다가 I/O가 완료되면 callback 함수를 EventQueue에 집어 넣는다. EventLoop는 항상 돌고 있다가 V8 엔진의 호출스택이 모두 종료(모든 작업을 실행하고 남아 있는 작업이 없을 경우) EventQueue에서 작업을 꺼내어 처리하게 된다.</h5><h5 id="또한-Node-js가-ThreadPool을-사용하는-이유중에-하나는-시스템에서-Non-blocking을-지원하지-않아-Blocking이-발생하는-함수에-대해-호출이-일어났을-경우-이를-Thread에-할당해-처리한뒤-i-o작업이끝나면-callback을-리턴해주어-non-blocking처럼-작동할-수-있도록-한다"><a href="#또한-Node-js가-ThreadPool을-사용하는-이유중에-하나는-시스템에서-Non-blocking을-지원하지-않아-Blocking이-발생하는-함수에-대해-호출이-일어났을-경우-이를-Thread에-할당해-처리한뒤-i-o작업이끝나면-callback을-리턴해주어-non-blocking처럼-작동할-수-있도록-한다" class="headerlink" title="또한 Node js가 ThreadPool을 사용하는 이유중에 하나는 시스템에서 Non blocking을 지원하지 않아 Blocking이 발생하는 함수에 대해 호출이 일어났을 경우 이를 Thread에 할당해 처리한뒤 i/o작업이끝나면 callback을 리턴해주어 non blocking처럼 작동할 수 있도록 한다."></a>또한 Node js가 ThreadPool을 사용하는 이유중에 하나는 시스템에서 Non blocking을 지원하지 않아 Blocking이 발생하는 함수에 대해 호출이 일어났을 경우 이를 Thread에 할당해 처리한뒤 i/o작업이끝나면 callback을 리턴해주어 non blocking처럼 작동할 수 있도록 한다.</h5>
         </div>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- HexoBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="2672997128"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://xyom.github.io/2017/12/08/Node js 동작 원리/" data-id="cjbkanuag000eyhqrs6o16py5" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+    <a data-url="http://xyom.github.io/2017/12/08/Node js 동작 원리/" data-id="cjbkb90vd000e3zqre9dssnz6" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -256,6 +278,7 @@
 
     
     </section>
+
 
 
                         </div>
@@ -512,7 +535,19 @@
             
         
     </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- HexoBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="2672997128"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 </aside>
+
                 </div>
             </div>
         </div>
