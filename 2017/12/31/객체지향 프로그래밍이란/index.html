@@ -3,25 +3,25 @@
 <head>
     <meta charset="utf-8">
     
-    <title>자료구조 - DisJointSet | Gunner</title>
+    <title>객체 지향 프로그래밍 | Gunner</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="DisJointSet" />
+        <meta name="keywords" content="객체 지향 프로그래밍 / JAVA" />
     
-    <meta name="description" content="DisJointSet은 집합을 나타낼 수 있는 간단한 자료구조이다. 집합은 어떠한 원소들이 하나의 공통 요소에 의해 묶여 있다는 것을 말한다. 위의 그림을 보면 p q r s는 X라는 요소에 묶여 있고 1 2 3 4 5 는 Y라는 요소에 묶여 있다. 즉 이를 구현하기 위해 생각해보면 각 원소들은 X나 Y라는 요소를 가리키고 있다고 생각하면 편하게 된다.">
-<meta name="keywords" content="DisJointSet">
+    <meta name="description" content="객체 지향 프로그래밍이란 실세계에서의 개념을  추상화하여 프로그래밍 상의 객체로 옮겨 놓는 방식으로 코드를 작성하는 방법을 말한다. 예를 들면 자동차라는 객체를 프로그래밍 하려면 자동차의 특성과 기능을 추려 이를 프로그래밍 할 수 있다. 자동차는 바퀴,헤드라이트, 핸들, … 등을 가지고 전진, 후진, 방향 전환 등의 기능을 가지고 있다. 이러한 특성과">
+<meta name="keywords" content="객체 지향 프로그래밍 &#x2F; JAVA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="자료구조 - DisJointSet">
-<meta property="og:url" content="http://xyom.github.io/2017/12/24/DisJointSet/index.html">
+<meta property="og:title" content="객체 지향 프로그래밍">
+<meta property="og:url" content="http://xyom.github.io/2017/12/31/객체지향 프로그래밍이란/index.html">
 <meta property="og:site_name" content="Gunner">
-<meta property="og:description" content="DisJointSet은 집합을 나타낼 수 있는 간단한 자료구조이다. 집합은 어떠한 원소들이 하나의 공통 요소에 의해 묶여 있다는 것을 말한다. 위의 그림을 보면 p q r s는 X라는 요소에 묶여 있고 1 2 3 4 5 는 Y라는 요소에 묶여 있다. 즉 이를 구현하기 위해 생각해보면 각 원소들은 X나 Y라는 요소를 가리키고 있다고 생각하면 편하게 된다.">
+<meta property="og:description" content="객체 지향 프로그래밍이란 실세계에서의 개념을  추상화하여 프로그래밍 상의 객체로 옮겨 놓는 방식으로 코드를 작성하는 방법을 말한다. 예를 들면 자동차라는 객체를 프로그래밍 하려면 자동차의 특성과 기능을 추려 이를 프로그래밍 할 수 있다. 자동차는 바퀴,헤드라이트, 핸들, … 등을 가지고 전진, 후진, 방향 전환 등의 기능을 가지고 있다. 이러한 특성과">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg">
-<meta property="og:updated_time" content="2017-12-24T04:24:45.145Z">
+<meta property="og:updated_time" content="2017-12-31T09:16:30.404Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="자료구조 - DisJointSet">
-<meta name="twitter:description" content="DisJointSet은 집합을 나타낼 수 있는 간단한 자료구조이다. 집합은 어떠한 원소들이 하나의 공통 요소에 의해 묶여 있다는 것을 말한다. 위의 그림을 보면 p q r s는 X라는 요소에 묶여 있고 1 2 3 4 5 는 Y라는 요소에 묶여 있다. 즉 이를 구현하기 위해 생각해보면 각 원소들은 X나 Y라는 요소를 가리키고 있다고 생각하면 편하게 된다.">
+<meta name="twitter:title" content="객체 지향 프로그래밍">
+<meta name="twitter:description" content="객체 지향 프로그래밍이란 실세계에서의 개념을  추상화하여 프로그래밍 상의 객체로 옮겨 놓는 방식으로 코드를 작성하는 방법을 말한다. 예를 들면 자동차라는 객체를 프로그래밍 하려면 자동차의 특성과 기능을 추려 이를 프로그래밍 할 수 있다. 자동차는 바퀴,헤드라이트, 핸들, … 등을 가지고 전진, 후진, 방향 전환 등의 기능을 가지고 있다. 이러한 특성과">
 <meta name="twitter:image" content="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg">
     
 
@@ -135,7 +135,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Programming/DataStructure/">DataStructure</a>
+    <a class="page-title-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CS/JAVA/">JAVA</a>
     </h1>
 </div>
                         <div class="main-body-content">
@@ -150,14 +150,14 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-				<article id="post-DisJointSet" class="article article-single article-type-post" itemscope itemprop="blogPost">
+				<article id="post-객체지향 프로그래밍이란" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        자료구조 - DisJointSet
+        객체 지향 프로그래밍
         </h1>
     
 
@@ -167,26 +167,65 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/12/24/DisJointSet/" class="article-date">
-            <time datetime="2017-12-24T04:24:45.145Z" itemprop="datePublished">2017-12-24</time>
+        <a href="/2017/12/31/객체지향 프로그래밍이란/" class="article-date">
+            <time datetime="2017-12-31T09:16:30.404Z" itemprop="datePublished">2017-12-31</time>
         </a>
     </div>
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/DisJointSet/">DisJointSet</a>
+        <a class="tag-link" href="/tags/객체-지향-프로그래밍-JAVA/">객체 지향 프로그래밍 / JAVA</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="http://www.math-only-math.com/images/disjoint-of-sets.png" alt=""></p>
-<p> DisJointSet은 집합을 나타낼 수 있는 간단한 자료구조이다. 집합은 어떠한 원소들이 하나의 공통 요소에 의해 묶여 있다는 것을 말한다. 위의 그림을 보면 p q r s는 X라는 요소에 묶여 있고 1 2 3 4 5 는 Y라는 요소에 묶여 있다. 즉 이를 구현하기 위해 생각해보면 각 원소들은 X나 Y라는 요소를 가리키고 있다고 생각하면 편하게 된다.</p>
-<p> DisJointSet은 초기 모두 자기 자신을 부모로 가진다(각자 크기가 1인 자신만의 집합을 갖는다). 후에 Union연산을 하는 과정에서 병합되는 부모를 상대방의 부모로 가리키게 되면서 만약 같은 부모를 가리키고 있으면 같은 집합이다로 판단하게 된다.</p>
-<p> DisJointSet은 Prim이나 Kruskal 알고리즘을 풀이 할 때 유용하다. 각각의 간선들을 이어나가면서 간선의 사이클이 발생시키지 않게 하기 위해서는 집합에 포함된 요소가 또다시 포함되지 않아야 하기 때문에 DisJointSet을 사용한다.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DisJointSet</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> size = <span class="number">100</span>;</span><br><span class="line">	<span class="keyword">int</span>* arr;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">allocate</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		arr = (<span class="keyword">int</span>*) <span class="built_in">malloc</span>( <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * size );</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)</span><br><span class="line">			arr[i] = i;</span><br><span class="line">	&#125; </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	DisJointSet()</span><br><span class="line">	&#123;</span><br><span class="line">		allocate();</span><br><span class="line">	&#125;</span><br><span class="line">	DisJointSet(<span class="keyword">int</span> s)</span><br><span class="line">	&#123;</span><br><span class="line">		size = s;</span><br><span class="line">		allocate();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getParent</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr[x] == x)</span><br><span class="line">			<span class="keyword">return</span> x;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> x = getParent(arr[x]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">unify</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> parentx = getParent(x);</span><br><span class="line">		<span class="keyword">int</span> parenty = getParent(y);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (parentx != parenty)</span><br><span class="line">			arr[parentx] = parenty;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	DisJointSet ds;</span><br><span class="line"></span><br><span class="line">	ds.unify(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	ds.unify(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d "</span>, ds.getParent(<span class="number">2</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d "</span>, ds.getParent(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>  객체 지향 프로그래밍이란 실세계에서의 개념을  추상화하여 프로그래밍 상의 객체로 옮겨 놓는 방식으로 코드를 작성하는 방법을 말한다. 예를 들면 자동차라는 객체를 프로그래밍 하려면 자동차의 특성과 기능을 추려 이를 프로그래밍 할 수 있다. 자동차는 바퀴,헤드라이트, 핸들, … 등을 가지고 전진, 후진, 방향 전환 등의 기능을 가지고 있다. 이러한 특성과 기능을 모아 자동차라는 객체 클래스를 만들면 추가적인 특성을 가진 자동차 객체를 코딩하거나 자동차 객체를 여러개 생성하게 될 때 등등 코드를 재사용률이 커진다.</p>
+<p>  객체 지향 프로그래밍에는 4가지 특성과 5가지의 설계원칙이 있다.</p>
+<h3 id="객체지향-4가지-특성"><a href="#객체지향-4가지-특성" class="headerlink" title="객체지향 4가지 특성"></a>객체지향 4가지 특성</h3><ul>
+<li><p>추상화 - 추상화란 현실 세계의 객체의 공통된 특징과 기능을 추출하는 것을 의미한다. 동물은 사자, 원숭이, 코끼리 등등 많은 것이 존재하지만 이 동물들의 기본적인 특성과 기능을 모아 동물이라는 클래스를 정의하는 것을 추상화라고 한다. 동물은 모두 호흡을하고 심장을가지고 있으며 움직인다라는 특성과 기능을 가지고 있는데 이러한 것들을 한군데 모아 정의하는 것을 의미한다.</p>
+<p>​</p>
+</li>
+<li><p>다형성 - 다형성에는 오버로딩과 오버라이딩이 있다. 똑같은 이름의 함수여도 함수의 인자의 갯수나 타입, 상속 받은 객체에서의 오버라이딩에 대해서 다르게 동작하는 것을 의미한다.</p>
+<ul>
+<li><p>오버로딩은 파라미터의 개수나 타입이 다른 함수를 정의하는 것을 의미한다. 예를 들어 두 정수를 더하는 public void sum(int a,int b)라는 함수를 정의했다고 하면 두 실수를 더하기 위한 함수인 public void sum(double a,double b)함수를 정의할 수 있다. 이 함수는 똑같은 이름으로 호출하지만 집어넣는 인자의 타입에 따라 다른방식으로 동작할 수 있다.</p>
+</li>
+<li><p>오버라이딩은 상속에 의해 부모가 가진 함수를 재정의 하여 사용하는 것을 의미한다. 부모 객체가 ‘안녕 나는 부모’라는 메시지를 출력하는 say()라는 함수를 가지고 있다고 하면 자식 객체는 부모 객체를 상속받으면서 이 함수에 대해 오버라이딩을 하여 ‘안녕 나는 자식’이라는 메시지를 출력하도록 변경할 수 있다. </p>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>상속성 - 상속성은 부모 객체의 특성을 자식이 물려받는 것을 의미한다. 상속을 통해 부모가 가진 기능에 대하여 물려받아 사용할 수 있다. 예를 들어 자동차라는 클래스를 상속받은 슈퍼카 클래스는 기본 기능인 전진, 후진, 방향 전환 등의 기능을 모두 물려받고 자신의 특성인 부스트, 드리프트 기능등 자신의 특징만 추가하면된다.</p>
+<p>​</p>
+</li>
+<li><p>캡슐화 - 캡슐화란 클래스가 동작하는 것에 대해 사용자가 그 내부 동작을 모르게 동작한다는 것을 의미한다. 예를 들어 환자는 감기약이라는 캡슐 알약 하나를 먹지만 캡슐 알약에는 항생제, 수면제, 등등 많은 작용을 하는 성분들이 들어가 있고 작용을 하지만 환자는 이를 알 수 없다. 이처럼 클래스는 자신이 동작하는 것에 대해 사용자가 알 필요가 없이 동작하는 것을 캡슐화라고 한다.</p>
+</li>
+</ul>
+<h3 id="객체지향-5가지-설계-원칙"><a href="#객체지향-5가지-설계-원칙" class="headerlink" title="객체지향 5가지 설계 원칙"></a>객체지향 5가지 설계 원칙</h3><ul>
+<li>SRP(Single Responsibility Principle) 단일 책임 원칙<ul>
+<li>클래스는 단 하나의 기능을 가지고 클래스가 제공하는 모든 서비스는 그 하나의 기능을 수행하는 데 집중해 있어야 한다. </li>
+</ul>
+</li>
+<li>OCP(Open - Closed Principle) 개방 폐쇄의 원칙<ul>
+<li>확장에는 열려있고 변경에는 닫혀있어야 한다.</li>
+</ul>
+</li>
+<li>LSP(Liskov Substitution Principle) 리스코프 치환 원칙<ul>
+<li>상위 타입의 객체를 하위 타입의 객체로 치환해도 상위 타입을 사용하는 프로그램은 정상적으로 동작해야 한다.</li>
+</ul>
+</li>
+<li>ISP(Interface Segregation Principle) 인터페이스 분리 원칙<ul>
+<li>인터페이스는 그 인터페이스를 사용하는 사용자 기준으로 분리해야 한다.</li>
+</ul>
+</li>
+<li>DIP(Dependency Inversion Principle) 의존 역전의 법칙 <ul>
+<li>고수준 모듈은 저수준 모듈의 구현에 의존해서는 안된다.</li>
+</ul>
+</li>
+</ul>
+<p><a href="http://www.nextree.co.kr/p6960/" target="_blank" rel="noopener">5가지 설계 원칙 참고</a></p>
 
         </div>
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -205,7 +244,7 @@
 
 
 
-    <a data-url="http://xyom.github.io/2017/12/24/DisJointSet/" data-id="cjbukaxpe0004ycqrbzk9uunb" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+    <a data-url="http://xyom.github.io/2017/12/31/객체지향 프로그래밍이란/" data-id="cjbukaxqd000oycqr1fumctgy" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -343,20 +382,20 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/12/24/백준 2579 계단오르기/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/12/31/Rest API/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">새로운</strong>
         <p class="article-nav-title">
         
-            백준 2579 계단 오르기
+            Rest API란
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2017/12/24/HashTable/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/12/28/선택 정렬/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">오래된</strong>
-        <p class="article-nav-title">자료구조 - HashTable</p>
+        <p class="article-nav-title">선택 정렬</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -571,7 +610,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://xyom.github.io/2017/12/24/DisJointSet/';
+    var disqus_url = 'http://xyom.github.io/2017/12/31/객체지향 프로그래밍이란/';
     
     (function() {
     var dsq = document.createElement('script');
