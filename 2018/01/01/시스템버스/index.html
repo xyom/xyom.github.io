@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>컴퓨터 입출력 | Gunner</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="폴링 , 인터럽트, DMA" />
+    
+    <meta name="description" content="인터럽트란 인터럽트는 컴퓨터에서 발생하는 특수한 제어신호로 인터럽트가 발생하게 되면 인터럽트 당한 시점의 레지스터와 pc값을 저장한 후 CPU의 제어를 인터럽트 처리 루틴으로 넘긴다.  인터럽트는 크게 하드웨어 인터럽트, 소프트웨어 인터럽트로 나뉘며 현대의 운영체제는 인터럽트 동작 방식을 통해 구동된다.  입/출력 장치의 입/출력의 과정에서도 인터럽트가 발">
+<meta name="keywords" content="폴링 , 인터럽트, DMA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="컴퓨터 입출력">
+<meta property="og:url" content="http://xyom.github.io/2018/01/01/시스템버스/index.html">
+<meta property="og:site_name" content="Gunner">
+<meta property="og:description" content="인터럽트란 인터럽트는 컴퓨터에서 발생하는 특수한 제어신호로 인터럽트가 발생하게 되면 인터럽트 당한 시점의 레지스터와 pc값을 저장한 후 CPU의 제어를 인터럽트 처리 루틴으로 넘긴다.  인터럽트는 크게 하드웨어 인터럽트, 소프트웨어 인터럽트로 나뉘며 현대의 운영체제는 인터럽트 동작 방식을 통해 구동된다.  입/출력 장치의 입/출력의 과정에서도 인터럽트가 발">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg">
+<meta property="og:updated_time" content="2018-01-01T11:10:28.631Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="컴퓨터 입출력">
+<meta name="twitter:description" content="인터럽트란 인터럽트는 컴퓨터에서 발생하는 특수한 제어신호로 인터럽트가 발생하게 되면 인터럽트 당한 시점의 레지스터와 pc값을 저장한 후 CPU의 제어를 인터럽트 처리 루틴으로 넘긴다.  인터럽트는 크게 하드웨어 인터럽트, 소프트웨어 인터럽트로 나뉘며 현대의 운영체제는 인터럽트 동작 방식을 통해 구동된다.  입/출력 장치의 입/출력의 과정에서도 인터럽트가 발">
+<meta name="twitter:image" content="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="Gunner" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Gunner</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/">CS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/Database/">Database</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/ETC/">ETC</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/JAVA/">JAVA</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/운영체제/">운영체제</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/컴퓨터구조/">컴퓨터구조</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/InterView/">InterView</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/">Programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/DataStructure/">DataStructure</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/JavaScript/">JavaScript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/Node-js/">Node js</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CS/컴퓨터구조/">컴퓨터구조</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- HexoBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="2672997128"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+				<article id="post-시스템버스" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        컴퓨터 입출력
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/01/01/시스템버스/" class="article-date">
+            <time datetime="2018-01-01T11:10:28.631Z" itemprop="datePublished">2018-01-01</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/폴링-인터럽트-DMA/">폴링 , 인터럽트, DMA</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="인터럽트란"><a href="#인터럽트란" class="headerlink" title="인터럽트란"></a>인터럽트란</h2><p> 인터럽트는 컴퓨터에서 발생하는 특수한 제어신호로 인터럽트가 발생하게 되면 인터럽트 당한 시점의 레지스터와 pc값을 저장한 후 CPU의 제어를 인터럽트 처리 루틴으로 넘긴다.</p>
+<p> 인터럽트는 크게 하드웨어 인터럽트, 소프트웨어 인터럽트로 나뉘며 현대의 운영체제는 인터럽트 동작 방식을 통해 구동된다.  입/출력 장치의 입/출력의 과정에서도 인터럽트가 발생하며 CPU는 인터럽트가 발생했다는 것을 인지하여 입/출력이 완료되었음을 알아 차리게 된다.</p>
+<p> 인터럽트가 있기에 컴퓨터는 예외 상황이 발생하면 현재 하던 작업을 중단하고 서브루틴을 수행하여 우선적으로 인터럽트에 대하여 처리할 수 있게 된다. 만약 인터럽트가 없다면 컴퓨터는 매번 실행되는 일이 모두 끝날 때까지 기다려야 할 것이다.</p>
+<h2 id="I-O-방식"><a href="#I-O-방식" class="headerlink" title="I/O 방식"></a>I/O 방식</h2><p>I/O 방식에는 크게 폴링, 인터럽트 방식, DMA 방식이 있으며 이 3가지에 대해서 알아보도록 하겠다.</p>
+<ul>
+<li>폴링 방식 : 폴링 방식은 while문을 생각하면 쉽다. CPU에서 입출력이 완료 되었는지 주기적으로 입출력 장치의 버퍼를 확인한다. 가장 간단한 방식이지만 CPU가 주기적으로 확인해야 하는 방식이기 때문에 효율적이지 못하다.</li>
+</ul>
+<ul>
+<li><p>인터럽트 방식: 인터럽트 방식은 컴퓨터에서 일어나는 인터럽트 신호를 통해 CPU에 입/출력이 완료되었음을 알려주는 방식이다. 입/출력이 발생하면 Device Controller에 연결되어 있는 Local Buffer에 데이터가 쌓이게 되고 이 Buffer가 가득차면 Device Controller는 인터럽트 신호를 발생시켜 CPU에 입/출력 작업이 완료되었음을 알린다. 이는 주기적으로 CPU가 확인해야하는 폴링 방식에 비해 효율적이다.</p>
+<p>​</p>
+</li>
+<li><p>DMA 방식:  DMA 방식은 DMA Controller에 입/출력에 대한 제어를 넘기고 메모리에 내용을 직접 읽고 쓰는 것을 의미한다. CPU에서 입/출력할 일이 생기게 되면 CPU는 입/출력을 수행할 메모리에 대한 주소의 값을 DMA에 넘겨주고 DMA에 제어권을 넘긴다. 이후 DMA는 입/출력 장치와 데이터를 주고 받으면서 모든 입/출력 과정이 끝났을 때 인터럽트를 발생시킨다. 이 방식은 Buffer가 쌓일 때마다 인터럽트를 발생시키는 방식보다 인터럽트가 덜 발생하기 때문에 효율적이다.</p>
+<p>-&gt; DMA는 입/출력 과정에서 데이터 버스의 사용이 필요하다. 하지만 CPU와 DMA가 동시에 데이터 버스에 대한 사용을 할 수 없기 때문에 CPU가 데이터 버스에 대한 사용권을 한 차례(Cycle)을 넘겨주는데 이를 Cycle Stealing이라고 한다. </p>
+</li>
+</ul>
+<h2 id="동기-비동기-방식-입출력"><a href="#동기-비동기-방식-입출력" class="headerlink" title="동기 , 비동기 방식 입출력"></a>동기 , 비동기 방식 입출력</h2><ul>
+<li><p>동기 방식 : 동기 방식이란 입출력이 완료 될 때까지 아무 작업을 하지 않고 완료를 기다리는 것이다. 예를 들면 빨래를 세탁기에 널었는데 세탁기가 빨래를 모두 할 때 까지 다른일을 하지 않고 기다리는 것으로 볼 수 있다. </p>
+<p>프로그램의 입출력 방식이 동기 방식으로 수행되면 코드는 수행되다가 해당 입출력이 완료되어 결과를 반환할때까지 멈추어 있게 된다.</p>
+<p>​</p>
+</li>
+<li><p>비동기 방식: 비동기 방식은 입출력에 대하여 시켜놓고 다른일을 하는 것을 말한다. 위에서 빨래를 하면서 아무일도 하지 않고 기다렸다면 빨래를 하도록 해놓고 나는 컴퓨터도 하고 요리도 하고 다른일을 하다가 완료되었으면 이에 대해 통보받는 것을 의미한다. 비동기함수는 결과를 즉시 리턴하며 작업이 완료되었음을 알려준다.</p>
+</li>
+</ul>
+
+        </div>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- HexoBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="2672997128"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://xyom.github.io/2018/01/01/시스템버스/" data-id="cjbw3th07001oh0qreae61w44" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/01/운영체제/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">새로운</strong>
+        <p class="article-nav-title">
+        
+            운영체제란
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/01/01/스케줄링/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">오래된</strong>
+        <p class="article-nav-title">CPU 스케줄링</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">최근 글</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/01/프로세스/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="프로세스" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a></p>
+                            <p class="item-title"><a href="/2018/01/01/프로세스/" class="title">프로세스</a></p>
+                            <p class="item-date"><time datetime="2018-01-01T11:10:28.675Z" itemprop="datePublished">2018-01-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/01/운영체제/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="운영체제란" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a></p>
+                            <p class="item-title"><a href="/2018/01/01/운영체제/" class="title">운영체제란</a></p>
+                            <p class="item-date"><time datetime="2018-01-01T11:10:28.631Z" itemprop="datePublished">2018-01-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/01/시스템버스/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="컴퓨터 입출력" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/컴퓨터구조/">컴퓨터구조</a></p>
+                            <p class="item-title"><a href="/2018/01/01/시스템버스/" class="title">컴퓨터 입출력</a></p>
+                            <p class="item-date"><time datetime="2018-01-01T11:10:28.631Z" itemprop="datePublished">2018-01-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/01/스케줄링/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="CPU 스케줄링" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a></p>
+                            <p class="item-title"><a href="/2018/01/01/스케줄링/" class="title">CPU 스케줄링</a></p>
+                            <p class="item-date"><time datetime="2018-01-01T11:10:28.591Z" itemprop="datePublished">2018-01-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/01/프로세스 동기화/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="프로세스/스레드 동기화" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a></p>
+                            <p class="item-title"><a href="/2018/01/01/프로세스 동기화/" class="title">프로세스/스레드 동기화</a></p>
+                            <p class="item-date"><time datetime="2018-01-01T11:10:28.579Z" itemprop="datePublished">2018-01-01</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/Database/">Database</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/ETC/">ETC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/JAVA/">JAVA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/운영체제/">운영체제</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/컴퓨터구조/">컴퓨터구조</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/InterView/">InterView</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Algorithm/">Algorithm</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/DataStructure/">DataStructure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Node-js/">Node js</a><span class="category-list-count">3</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12월 2017</a><span class="archive-list-count">25</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">태그</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-스케줄링/">CPU 스케줄링</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DisJointSet/">DisJointSet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/InterView/">InterView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linked-List/">Linked List</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PriorityQueue/">PriorityQueue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rest-API/">Rest API</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/객체-지향-프로그래밍-JAVA/">객체 지향 프로그래밍 / JAVA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-13911-집-구하기/">백준 13911 집 구하기</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-2579-계단-오르기/">백준 2579 계단 오르기</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-2661-좋은-수열/">백준 2661 좋은 수열</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/버블-정렬/">버블 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/병합-정렬/">병합 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/삽입-정렬/">삽입 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/선택-정렬/">선택 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/운영체제/">운영체제</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/퀵-정렬/">퀵 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/폴링-인터럽트-DMA/">폴링 , 인터럽트, DMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/프로세스/">프로세스</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/프로세스-쓰레드-동기화/">프로세스/ 쓰레드 동기화</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CPU-스케줄링/" style="font-size: 10px;">CPU 스케줄링</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/DisJointSet/" style="font-size: 10px;">DisJointSet</a> <a href="/tags/Dynamic-Programming/" style="font-size: 10px;">Dynamic Programming</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/InterView/" style="font-size: 10px;">InterView</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linked-List/" style="font-size: 10px;">Linked List</a> <a href="/tags/Node-js/" style="font-size: 20px;">Node js</a> <a href="/tags/PriorityQueue/" style="font-size: 10px;">PriorityQueue</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Rest-API/" style="font-size: 10px;">Rest API</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/객체-지향-프로그래밍-JAVA/" style="font-size: 10px;">객체 지향 프로그래밍 / JAVA</a> <a href="/tags/백준-13911-집-구하기/" style="font-size: 10px;">백준 13911 집 구하기</a> <a href="/tags/백준-2579-계단-오르기/" style="font-size: 10px;">백준 2579 계단 오르기</a> <a href="/tags/백준-2661-좋은-수열/" style="font-size: 10px;">백준 2661 좋은 수열</a> <a href="/tags/버블-정렬/" style="font-size: 10px;">버블 정렬</a> <a href="/tags/병합-정렬/" style="font-size: 10px;">병합 정렬</a> <a href="/tags/삽입-정렬/" style="font-size: 10px;">삽입 정렬</a> <a href="/tags/선택-정렬/" style="font-size: 10px;">선택 정렬</a> <a href="/tags/운영체제/" style="font-size: 10px;">운영체제</a> <a href="/tags/퀵-정렬/" style="font-size: 10px;">퀵 정렬</a> <a href="/tags/폴링-인터럽트-DMA/" style="font-size: 10px;">폴링 , 인터럽트, DMA</a> <a href="/tags/프로세스/" style="font-size: 10px;">프로세스</a> <a href="/tags/프로세스-쓰레드-동기화/" style="font-size: 10px;">프로세스/ 쓰레드 동기화</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- HexoBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="2672997128"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 SuHawn Yun</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://xyom.github.io/2018/01/01/시스템버스/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
