@@ -140,11 +140,11 @@
 </div>
                         <div class="main-body-content">
                             	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- HexoBlog -->
+<!-- 헥소 블로그 -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-5736334637835390"
-     data-ad-slot="2672997128"
+     data-ad-slot="1997826239"
      data-ad-format="auto"></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
@@ -190,11 +190,11 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span>(disable:4996)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 987654321</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">301</span>];</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">301</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//freopen("input.txt", "r", stdin);</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;arr[i]);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">			dp[<span class="number">1</span>] = arr[<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">if</span> (i == <span class="number">2</span>)</span><br><span class="line">			dp[<span class="number">2</span>] = arr[<span class="number">1</span>]+arr[<span class="number">2</span>];</span><br><span class="line">		<span class="keyword">if</span> (i &gt;= <span class="number">3</span>)</span><br><span class="line">			dp[i] = max(dp[i - <span class="number">2</span>] + arr[i], dp[i - <span class="number">3</span>] + arr[i<span class="number">-1</span>] + arr[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, dp[n]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- HexoBlog -->
+<!-- 헥소 블로그 -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-5736334637835390"
-     data-ad-slot="2672997128"
+     data-ad-slot="1997826239"
      data-ad-format="auto"></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
@@ -205,7 +205,7 @@
 
 
 
-    <a data-url="http://xyom.github.io/2017/12/24/백준 2579 계단오르기/" data-id="cjbw3tgzy001ah0qrc65mg365" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+    <a data-url="http://xyom.github.io/2017/12/24/백준 2579 계단오르기/" data-id="cjbw4r2eg001akiqrfnwjea59" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -395,26 +395,6 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/01/01/운영체제/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="운영체제란" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a></p>
-                            <p class="item-title"><a href="/2018/01/01/운영체제/" class="title">운영체제란</a></p>
-                            <p class="item-date"><time datetime="2018-01-01T11:10:28.631Z" itemprop="datePublished">2018-01-01</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2018/01/01/시스템버스/" class="thumbnail">
     
     
@@ -428,6 +408,26 @@
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/컴퓨터구조/">컴퓨터구조</a></p>
                             <p class="item-title"><a href="/2018/01/01/시스템버스/" class="title">컴퓨터 입출력</a></p>
+                            <p class="item-date"><time datetime="2018-01-01T11:10:28.631Z" itemprop="datePublished">2018-01-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/01/운영체제/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="운영체제란" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a></p>
+                            <p class="item-title"><a href="/2018/01/01/운영체제/" class="title">운영체제란</a></p>
                             <p class="item-date"><time datetime="2018-01-01T11:10:28.631Z" itemprop="datePublished">2018-01-01</time></p>
                         </div>
                     </li>
@@ -536,11 +536,11 @@
         
     </div>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- HexoBlog -->
+<!-- 헥소 블로그 -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-5736334637835390"
-     data-ad-slot="2672997128"
+     data-ad-slot="1997826239"
      data-ad-format="auto"></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
