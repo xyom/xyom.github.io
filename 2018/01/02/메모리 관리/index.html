@@ -3,20 +3,26 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Gunner</title>
+    <title>운영체제 메모리 관리 | Gunner</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="My Tech Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gunner">
-<meta property="og:url" content="http://xyom.github.io/index.html">
+        <meta name="keywords" content="운영체제" />
+    
+    <meta name="description" content="Logical vs Physical AddressLogical Address( = virtual address)  프로세스마다 독립적으로 가지는 주소 공간 각 프로세스마다 0번지부터 시작 CPU가 보는 주소는 Logical Adress 이다.  Physical Address  메모리에 실제 올라가는 물리적 메모리 주소공간  논리적 메모리는 MMU에 의해 자">
+<meta name="keywords" content="운영체제">
+<meta property="og:type" content="article">
+<meta property="og:title" content="운영체제 메모리 관리">
+<meta property="og:url" content="http://xyom.github.io/2018/01/02/메모리 관리/index.html">
 <meta property="og:site_name" content="Gunner">
-<meta property="og:description" content="My Tech Blog">
+<meta property="og:description" content="Logical vs Physical AddressLogical Address( = virtual address)  프로세스마다 독립적으로 가지는 주소 공간 각 프로세스마다 0번지부터 시작 CPU가 보는 주소는 Logical Adress 이다.  Physical Address  메모리에 실제 올라가는 물리적 메모리 주소공간  논리적 메모리는 MMU에 의해 자">
 <meta property="og:locale" content="ko">
+<meta property="og:image" content="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg">
+<meta property="og:updated_time" content="2018-01-02T03:09:06.030Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gunner">
-<meta name="twitter:description" content="My Tech Blog">
+<meta name="twitter:title" content="운영체제 메모리 관리">
+<meta name="twitter:description" content="Logical vs Physical AddressLogical Address( = virtual address)  프로세스마다 독립적으로 가지는 주소 공간 각 프로세스마다 0번지부터 시작 CPU가 보는 주소는 Logical Adress 이다.  Physical Address  메모리에 실제 올라가는 물리적 메모리 주소공간  논리적 메모리는 MMU에 의해 자">
+<meta name="twitter:image" content="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg">
     
 
     
@@ -129,7 +135,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">홈</em>
+    <a class="page-title-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CS/운영체제/">운영체제</a>
     </h1>
 </div>
                         <div class="main-body-content">
@@ -144,532 +150,204 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-				
-
-    
-    
+				<article id="post-메모리 관리" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/01/02/메모리 관리/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="운영체제 메모리 관리" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://xyom.github.io/2018/01/02/메모리 관리/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a>
-            </div>
-            <div class="date"><time datetime="2018-01-02T03:09:06.030Z" itemprop="datePublished">2018-01-02</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2018/01/02/메모리 관리/">운영체제 메모리 관리</a>
+        운영체제 메모리 관리
         </h1>
     
 
-        <p class="article-excerpt">
-            Logical vs Physical AddressLogical Address( = virtual address)
-
-프로세스마다 독립적으로 가지는 주소 공간
-각 프로세스마다 0번지부터 시작
-CPU가 보는 주소는 Logical Adress 이다.
-
-Physical Address
-
-메모리에 실제 올라가는 물리적 메모리 주소공간 
-논리적 메모리는 MMU에 의해 자
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/01/02/메모리 관리/" class="article-date">
+            <time datetime="2018-01-02T03:09:06.030Z" itemprop="datePublished">2018-01-02</time>
+        </a>
     </div>
-</article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/01/01/프로세스/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="프로세스" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://xyom.github.io/2018/01/01/프로세스/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a>
-            </div>
-            <div class="date"><time datetime="2018-01-01T11:10:28.675Z" itemprop="datePublished">2018-01-01</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/01/01/프로세스/">프로세스</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            프로세스 프로세스란 실행중인 프로그램이다.  프로세스는 자신만의 Stack, Heap, Data, Code영역을 가진다. 프로세스는 운영체제에 의해 생성되고 스케줄링된다. 프로세스는 실행 과정중에서 I/O, Time Slice의 만료와 같은 상황에 따라 상태가 바뀌며 실행된다.
-프로세스의 상태
-프로세스의 상태는 크게 new, ready ,running, w
-        </p>
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/운영체제/">운영체제</a>
     </div>
-</article>
-    
-        </div>
-    
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/01/01/시스템버스/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="컴퓨터 입출력" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://xyom.github.io/2018/01/01/시스템버스/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/컴퓨터구조/">컴퓨터구조</a>
             </div>
-            <div class="date"><time datetime="2018-01-01T11:10:28.631Z" itemprop="datePublished">2018-01-01</time></div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="Logical-vs-Physical-Address"><a href="#Logical-vs-Physical-Address" class="headerlink" title="Logical vs Physical Address"></a>Logical vs Physical Address</h2><p><strong>Logical Address( = virtual address)</strong></p>
+<ul>
+<li>프로세스마다 독립적으로 가지는 주소 공간</li>
+<li>각 프로세스마다 0번지부터 시작</li>
+<li>CPU가 보는 주소는 Logical Adress 이다.</li>
+</ul>
+<p><strong>Physical Address</strong></p>
+<ul>
+<li>메모리에 실제 올라가는 물리적 메모리 주소공간 </li>
+<li>논리적 메모리는 MMU에 의해 자동으로 변환되기 때문에 사용자는 물리적 주소를 알 수 없다.</li>
+</ul>
+<h2 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h2><p> MMU(Memory Management Unit)은 CPU가 메모리에 접근하는 것을 관리하는 컴퓨터 하드웨어 부품으로 가상 주소를 실제 물리주소로 변환 시키는 일을 한다. </p>
+<p> MMU의 동작 순서</p>
+<ol>
+<li>TLB(변환색인 버퍼)에서 찾으려는 페이지가 존재하는지 찾고 있으면 반환 없으면 페이지 테이블을 탐색한다.</li>
+<li>페이지 테이블을 참조하여 페이지 테이블 번호와 offset의 정보를 바탕으로 물리주소를 계산하여 반환한다.</li>
+</ol>
+<h2 id="메모리-영역과-프로세스의-할당"><a href="#메모리-영역과-프로세스의-할당" class="headerlink" title="메모리 영역과 프로세스의 할당"></a>메모리 영역과 프로세스의 할당</h2><p><img src="http://cfile1.uf.tistory.com/image/1411643D4EFC09E1216442" alt=""></p>
+<p> 일반적으로 메모리는 OS가 실행되기 위해 커널이 올라가 있는 메모리 영역과 사용자가 프로그램을 실행할 수 있는 사용자 영역으로 나뉜다. 커널은 낮은 주소 영역을 사용하고 사용자는 높은 주소 영역을 사용한다.</p>
+<p> 사용자 프로세스는 사용자 영역에 할당되며 프로세스의 할당은 메모리 공간에 연속적으로 할당될 수 있고 불연속적으로 할당될 수 있다. </p>
+<ul>
+<li>연속적 할당 방법<ul>
+<li>고정크기할당<ul>
+<li>메모리를 모두 같은 크기의 영역으로 나누고 이 영역에 프로그램을 할당한다.</li>
+<li>융통성이 없기 때문에 최대 수행 가능한 프로그램 수가 제한적이다.</li>
+<li>고정 크기가 프로그램의 크기보다 클 경우 <strong>내부 단편화</strong> 문제 발생</li>
+</ul>
+</li>
+<li>가변크기 할당<ul>
+<li>프로그램에 따라 메모리의 영역을 동적으로 할당</li>
+<li><strong>외부 단편화</strong> 문제 발생</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>불연속적 할당 방법<ul>
+<li>페이징</li>
+<li>세그먼테이션</li>
+<li>페이징 &amp; 세그먼테이션</li>
+</ul>
+</li>
+</ul>
+<h2 id="페이징"><a href="#페이징" class="headerlink" title="페이징"></a>페이징</h2><p> <img src="http://mblogthumb1.phinf.naver.net/20160611_92/ipio100_1465638134415M5XxM_PNG/8.PNG?type=w2" alt=""></p>
+<p>  페이징이란 프로세스의 메모리 영역을 동일한 크기의 페이지로 나누어 관리하는 것을 말한다. 페이징을 통해 사용하지 않는 페이지를 디스크에 저장함으로써 사용자는 더 큰 메모리를 사용할 수 있다. 페이지를 디스크에 저장하기 때문에 사용해야 할 페이지가 메모리에 없을 경우 다시 메인 메모리로 불러와야 하는 과정이 필요하다.</p>
+<ul>
+<li>물리적으로는 프레임(frame) 논리적으로는 페이지(Page)로 동일한 크기로 나뉜다.</li>
+</ul>
+<ul>
+<li>페이지는 메모리 공간에 불연속적으로 적재될 수 있다. -&gt; 불연속적인 페이지들의 실제 저장 위치를 계산하기 위한 페이지 테이블이 필요하다. PTBR(Page Table Base Register)라는 레지스터가 항상 페이지 테이블의 위치를 기억하고 있다.</li>
+<li>필요한 페이지는 메모리에 올라가고 사용되지 않는 페이지는 디스크에 저장될 수 있다. -&gt; 이로 인해 실제 물리 메모리의 크기보다 더욱 큰 메모리를 사용할 수 있는 것처럼 보인다.</li>
+<li>자주 사용되는 페이지는 TLB라는 캐시에 저장되어 캐시가 존재할 경우 빠르게 불러올 수 있다.</li>
+</ul>
+<h4 id="요구-페이징"><a href="#요구-페이징" class="headerlink" title="요구 페이징"></a>요구 페이징</h4><p> 페이징 기법을 사용하다보니 필요한 페이지가 메모리가 아닌 디스크 상에 존재하는 경우가 생김. 따라서 필요할 때마다 메모리로 불러 들여와 실행하게 되는데 이를 요구 페이징이라 한다. 여기서 실행에 필요한 페이지들이 메모리에 더욱 오래 상주하기 위해서 자주 사용되지 않거나 필요없는 페이지를 교체해주어야 하는 알고리즘이 필요하다.  크게 FIFO, OPT, LRU,LFU  등이 있다.</p>
+<ul>
+<li>FIFO<ul>
+<li>처음 들어왔던 페이지(가장 오래된 페이지)를 새로운 페이지와 교체한다. </li>
+</ul>
+</li>
+<li>OPT<ul>
+<li>앞으로 사용될 가능성이 가장 적은 페이지를 교체한다. -&gt; 현재 메모리에 1 2 3 4 가 올라와 있고 앞으로의 사용이 1 1 2 2 3 3 3 4 1 1 2 라고 하면 가장 적게 사용될 4번 페이지를 교체한다.</li>
+<li>페이지 부재가 가장 적게 일어나 이상적이지만 페이지의 미래 사용량을 예측하여야 하므로 현실적으로 구현하기 매우 힘들다.</li>
+</ul>
+</li>
+<li>LRU<ul>
+<li>LRU는 가장 최근에 사용되지 않았던 페이지를 교체하는 방법이다. 메모리에 5개의 페이지가 올라올 수 있고 1 2 3 4 5 1 로 참조가 되었으면 1이 가장 오래전에 있었지만 다시 참조 되었기 때문에 2번을 교체한다.</li>
+</ul>
+</li>
+<li>LFU<ul>
+<li>LFU는 가장 적은 참조횟수를 가졌던 페이지를 교체하는 방법이다. 메모리에 올라와 있는 페이지의 사용량을 카운팅하여 가장 사용량이 적었던 페이지를 교체한다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="세그먼테이션"><a href="#세그먼테이션" class="headerlink" title="세그먼테이션"></a>세그먼테이션</h2><p> 세그먼테이션은 페이징과 비슷하게 프로세스를 어떤 단위로 나눈다는 점에서 비슷하지만 세그먼테이션은 이를 논리적 단위로 나눈다는 점에서 차이가 있다. 페이징이 일정한 크기의 페이지로 나누었다면 세그먼테이션은 일반적으로 논리적 단위인 코드 영역, 데이터 영역, 힙 영역, 스택 영역으로 나눈다. </p>
+<p> 세그먼테이션은 페이징과 혼합되어 사용될 수 있다.</p>
+
         </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/01/01/시스템버스/">컴퓨터 입출력</a>
-        </h1>
-    
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 헥소 블로그 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="1997826239"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
-        <p class="article-excerpt">
-            인터럽트란 인터럽트는 컴퓨터에서 발생하는 특수한 제어신호로 인터럽트가 발생하게 되면 인터럽트 당한 시점의 레지스터와 pc값을 저장한 후 CPU의 제어를 인터럽트 처리 루틴으로 넘긴다.
- 인터럽트는 크게 하드웨어 인터럽트, 소프트웨어 인터럽트로 나뉘며 현대의 운영체제는 인터럽트 동작 방식을 통해 구동된다.  입/출력 장치의 입/출력의 과정에서도 인터럽트가 발
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/01/01/운영체제/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="운영체제란" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://xyom.github.io/2018/01/01/운영체제/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a>
-            </div>
-            <div class="date"><time datetime="2018-01-01T11:10:28.631Z" itemprop="datePublished">2018-01-01</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/01/01/운영체제/">운영체제란</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            운영체제란? 운영체제란 컴퓨터 시스템의 하드웨어 자원을 관리하고 효율적으로 사용할 수 있도록 하는 소프트웨어를 말한다. 좁은 의미에서는 운영체제의 커널을 의미하며 넓은 의미에서는 시스템을 관리하는 시스템 유틸리티들을 포함한 개념을 말한다.  운영체제는 A 프로세스의 메모리가 B프로세스의 메모리 영역을 침범하지 않도록 관리하고 파일시스템, 네트워크,프로세스들
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/01/01/스케줄링/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="CPU 스케줄링" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://xyom.github.io/2018/01/01/스케줄링/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a>
-            </div>
-            <div class="date"><time datetime="2018-01-01T11:10:28.591Z" itemprop="datePublished">2018-01-01</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/01/01/스케줄링/">CPU 스케줄링</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            스케줄링 스케줄링이랑 CPU에서 어떠한 프로세스가 실행되어야 할지 결정하는 작업이다. 적절한 스케줄링을 해야만 컴퓨터 작업의 효율성이 향상되고 반환시간이 단축된다.
- 스케줄링을 하는데 고려해야 할 요소는 CPU 이용률 , 처리량, 반환시간,대기 시간, 응답시간이 있다. 스케줄링은 수행되고 있는 프로세스를 뺏을 수 있냐 없냐에 따라서 선점/비선점 스케줄링으로
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/01/01/프로세스 동기화/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="프로세스/스레드 동기화" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://xyom.github.io/2018/01/01/프로세스 동기화/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/운영체제/">운영체제</a>
-            </div>
-            <div class="date"><time datetime="2018-01-01T11:10:28.579Z" itemprop="datePublished">2018-01-01</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/01/01/프로세스 동기화/">프로세스/스레드 동기화</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            프로세스 동기화 동기화란 병렬적으로 수행되는 작업들에 대해 자원에의 접근에 대한 순서를 정하는 과정을 말한다. 여러개의 프로세스나 쓰레드의 경우 동시에 특정 자원에 대한 접근이 발생할 수 있는데 이 과정에서 자원에 대해 동시 접근을 허용해 버린다면 예기치 못한 결과를 발생시킬 수 있다.
- 1234567int x = 10;public int cal(int a
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-        
-            </div></section>
-        
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/12/31/Rest API/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="Rest API란" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://xyom.github.io/2017/12/31/Rest API/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/ETC/">ETC</a>
-            </div>
-            <div class="date"><time datetime="2017-12-31T09:16:30.420Z" itemprop="datePublished">2017-12-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/12/31/Rest API/">Rest API란</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-             REST(REpresentational State Transfer)란 HTTP 통신에 있어서 자원에 대한 조회, 변경, 삽입, 삭제 요청을 자원(Uri)과 행위(Method)로 표현하여 설계하는 방식을 말한다.
- REST에는 대표적으로 GET,POST ,PUT, DELETE METHOD가 있으며 자원에 대해 이 METHOD 방법에 따라 서버에서 수행하는 
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/12/31/객체지향 프로그래밍이란/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="객체 지향 프로그래밍" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://xyom.github.io/2017/12/31/객체지향 프로그래밍이란/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/JAVA/">JAVA</a>
-            </div>
-            <div class="date"><time datetime="2017-12-31T09:16:30.404Z" itemprop="datePublished">2017-12-31</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/12/31/객체지향 프로그래밍이란/">객체 지향 프로그래밍</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-              객체 지향 프로그래밍이란 실세계에서의 개념을  추상화하여 프로그래밍 상의 객체로 옮겨 놓는 방식으로 코드를 작성하는 방법을 말한다. 예를 들면 자동차라는 객체를 프로그래밍 하려면 자동차의 특성과 기능을 추려 이를 프로그래밍 할 수 있다. 자동차는 바퀴,헤드라이트, 핸들, … 등을 가지고 전진, 후진, 방향 전환 등의 기능을 가지고 있다. 이러한 특성과 
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/12/28/선택 정렬/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="선택 정렬" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://xyom.github.io/2017/12/28/선택 정렬/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Algorithm/">Algorithm</a>
-            </div>
-            <div class="date"><time datetime="2017-12-28T10:51:33.284Z" itemprop="datePublished">2017-12-28</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/12/28/선택 정렬/">선택 정렬</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
+        <footer class="article-footer">
             
-  선택정렬은 데이터의 원소중에 가장 작은 최솟값의 인덱스를 찾은뒤 이를 교환해 주는 방법으로 동작한다.  위의 첫번째 단계를 보면 1이라는 최소 원소를 찾은 뒤 가장 이를 8의 원소의 위치와 교환해 주어 가장 최소의 값을 앞에 위치 시키는 것으로 볼 수 있다. 그 다음 최소값을 찾으면 3을 찾았고 그 다음 최솟값이 위치해야 할 5의 위치와 원소를 바꾸어
-        </p>
+
+
+
+    <a data-url="http://xyom.github.io/2018/01/02/메모리 관리/" data-id="cjbx7qz0e000qi0qrrcu4rhff" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/12/28/삽입 정렬/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="삽입 정렬" class="thumbnail-image"></span>
-    
+    <section id="comments">
     
         
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://xyom.github.io/2017/12/28/삽입 정렬/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Algorithm/">Algorithm</a>
-            </div>
-            <div class="date"><time datetime="2017-12-28T10:51:33.256Z" itemprop="datePublished">2017-12-28</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/12/28/삽입 정렬/">삽입 정렬</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
- 삽입 정렬은 정렬된 상태의 영역을 확대해 나가면서 그 다음의 후보가 삽입될 위치를 찾아 삽입한 뒤 그 다음 원소들을 밀어내는 방식으로 동작한다.
- 처음의 영역의 크기는 1로 가장 첫번째 원소만 포함한다. 위의 그림을 보면 5라는 원소가 크기 1인 영역에 속해 있고 2라는 다음 원소를 이 영역에 집어 넣는데 이 영역의 원소들과 비교해서 더 큰 숫자를 만나
-        </p>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-</article>
+
     
-        </div>
-    
+    </section>
 
-
-    </div></section>
-
-
-    <nav id="page-nav">
-        <span class="pages">Page 1 of 4</span>
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
-    </nav>
 
 
                         </div>
@@ -730,6 +408,19 @@ Physical Address
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/01/01/프로세스/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">오래된</strong>
+        <p class="article-nav-title">프로세스</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -939,11 +630,13 @@ Physical Address
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://xyom.github.io/2018/01/02/메모리 관리/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
