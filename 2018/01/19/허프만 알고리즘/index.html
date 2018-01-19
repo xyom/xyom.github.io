@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>허프만 코드 알고리즘 | Gunner</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="허프만 코드 알고리즘" />
+    
+    <meta name="description" content="####기본 개념   허프만 코드는 압축에서 기본적으로 쓰이는 개념으로 자주 쓰이는 문자열에 대해 적은 비트를 할당하여 문자를 압축하는 알고리즘이다. -&amp;gt; 예를 들어 “AABBABAAACDEKSPEQAAA” 라는 문자열이 있을 때 여기서 사용되는 A라는 문자열은 가장 많이 쓰이므로 이를 압축할 때 가장 적은 비트수를 가지는 0과 같은 비트로 매칭하여">
+<meta name="keywords" content="허프만 코드 알고리즘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="허프만 코드 알고리즘">
+<meta property="og:url" content="http://xyom.github.io/2018/01/19/허프만 알고리즘/index.html">
+<meta property="og:site_name" content="Gunner">
+<meta property="og:description" content="####기본 개념   허프만 코드는 압축에서 기본적으로 쓰이는 개념으로 자주 쓰이는 문자열에 대해 적은 비트를 할당하여 문자를 압축하는 알고리즘이다. -&amp;gt; 예를 들어 “AABBABAAACDEKSPEQAAA” 라는 문자열이 있을 때 여기서 사용되는 A라는 문자열은 가장 많이 쓰이므로 이를 압축할 때 가장 적은 비트수를 가지는 0과 같은 비트로 매칭하여">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="http://52.79.231.100:4000/images/1516351355109.PNG">
+<meta property="og:updated_time" content="2018-01-19T08:53:26.410Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="허프만 코드 알고리즘">
+<meta name="twitter:description" content="####기본 개념   허프만 코드는 압축에서 기본적으로 쓰이는 개념으로 자주 쓰이는 문자열에 대해 적은 비트를 할당하여 문자를 압축하는 알고리즘이다. -&amp;gt; 예를 들어 “AABBABAAACDEKSPEQAAA” 라는 문자열이 있을 때 여기서 사용되는 A라는 문자열은 가장 많이 쓰이므로 이를 압축할 때 가장 적은 비트수를 가지는 0과 같은 비트로 매칭하여">
+<meta name="twitter:image" content="http://52.79.231.100:4000/images/1516351355109.PNG">
+    
+
+    
+        <link rel="alternate" href="/" title="Gunner" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5736334637835390",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Gunner</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/">CS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/Database/">Database</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/ETC/">ETC</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/JAVA/">JAVA</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/네트워크/">네트워크</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/운영체제/">운영체제</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/컴퓨터구조/">컴퓨터구조</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/InterView/">InterView</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/">Programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/DataStructure/">DataStructure</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/JavaScript/">JavaScript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/Node-js/">Node js</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Programming/Algorithm/">Algorithm</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 헥소 블로그 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="1997826239"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+				<article id="post-허프만 알고리즘" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        허프만 코드 알고리즘
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/01/19/허프만 알고리즘/" class="article-date">
+            <time datetime="2018-01-19T08:53:26.410Z" itemprop="datePublished">2018-01-19</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/허프만-코드-알고리즘/">허프만 코드 알고리즘</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>####기본 개념</p>
+<p>  허프만 코드는 압축에서 기본적으로 쓰이는 개념으로 자주 쓰이는 문자열에 대해 적은 비트를 할당하여 문자를 압축하는 알고리즘이다. -&gt; 예를 들어 “AABBABAAACDEKSPEQAAA” 라는 문자열이 있을 때 여기서 사용되는 A라는 문자열은 가장 많이 쓰이므로 이를 압축할 때 가장 적은 비트수를 가지는 0과 같은 비트로 매칭하여 이를 대체한다. </p>
+<p> 허프만 코드는 원래 파일의 크기를 효과적으로 압축할 수 있는 장점이 있기 때문에 기본적으로 압축 기술에 널리 쓰인다.</p>
+<p><img src="http://52.79.231.100:4000/images/1516351355109.PNG" alt=""></p>
+<p>####동작 원리</p>
+<p>  허프만 알고리즘의 기본적인 동작은 이러하다.</p>
+<ol>
+<li>압축할 문자열의 빈도수를 계산한다.</li>
+<li>빈도수를 바탕으로 문자열을 정렬한다.</li>
+<li>정렬된 문자열을 2개씩 꺼내 묶어 트리 형태로 만든다. 꺼낸 2개의 빈도수는 빈도수를 합친 Node 형태로 다시 문자열 리스트에 집어 넣는다.</li>
+<li>2~3 과정을 반복하며 트리가 완성되면 끝낸다. </li>
+</ol>
+<p> 위의 과정에서 Node를 합치고 다시 넣은 다음 또 빈도수대로 정리하는 과정을 하기 위해서 sort를 여러번 호출할 수는 없기 때문에 여기서는 우선순위 큐를 이용해 원소를 넣을때 마다 자동으로 정렬하게 한다. 트리를 구성하기 위한 Node 들을 우선순위 큐에 집어 넣은뒤 우선순위 큐의 사이즈가 1이 될 때까지 트리를 반복적으로 구성해 나간다.</p>
+<p> 최후에 완성되어 queue에 남은 것은 root 노드가 되며 이 루트 노드를 기준으로 왼쪽은 0, 오른쪽은 1을 할당하여 리프노드를 찾을 때까지 탐색해 나가게 된다. -&gt; 문자들은 모두 리프노드에 할당되며 그때까지 지나온 0과 1의 경로들이 인코딩되는 값이다.</p>
+<p> 이 인코딩 값을 매번 찾는 것이 한번에 찾기 위해서 밑에 코드에서는 map을 사용하여 문자와 인코딩값을 저장해 두었다. 그리고 인코딩 할 때 map에서 찾아 해당되는 인코딩 값들을 문자열로 이어나가면 인코딩된 값을 찾을 수 있다. -&gt; 문자열 만큼만 반복하면 되니 O(n) 시간이 걸린다.</p>
+<p> 디코딩 과정에서는 인코딩된 문자열을 다시 원래의 문자로 돌리기 위해 트리를 검색한다. 루트를 기준으로 문자열의 i번쨰가 0이면 왼쪽트리, 1이면 오른쪽 트리로 따라가며 리프노드를 만나게 될경우 그 리프노드의 데이터를 출력하고 현재 노드를 다시 루트로 되돌리는 과정을 반복한다. -&gt; 이 과정도 문자열 만큼 반복되므로 O(n)이다.</p>
+<p><img src="http://52.79.231.100:4000/images/1516350234602.PNG" alt=""></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span>(disable:4996)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="built_in">string</span>&gt; encode;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> pri;</span><br><span class="line">	<span class="keyword">char</span> data;</span><br><span class="line">	Node* left;</span><br><span class="line">	Node* right;</span><br><span class="line">&#125;Node;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> Node* a, <span class="keyword">const</span> Node* b)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a-&gt;pri &gt; b-&gt;pri;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;NodeCompare;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Node datas[] = &#123; &#123; <span class="number">67</span>, <span class="string">'A'</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span> &#125;, &#123; <span class="number">23</span>, <span class="string">'B'</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span> &#125;, &#123; <span class="number">13</span>, <span class="string">'D'</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span> &#125;,</span><br><span class="line">&#123; <span class="number">19</span>, <span class="string">'C'</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span> &#125;, &#123; <span class="number">10</span>, <span class="string">'E'</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span> &#125;, &#123; <span class="number">5</span>, <span class="string">'F'</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span> &#125; &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Node* n,<span class="built_in">string</span> code)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n-&gt;left == <span class="literal">NULL</span> &amp;&amp; n-&gt;right == <span class="literal">NULL</span> &amp;&amp; n-&gt;data != <span class="string">' '</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		encode.insert(make_pair(n-&gt;data, code));</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; n-&gt;data &lt;&lt; <span class="string">" : "</span> &lt;&lt; code &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (n-&gt;left != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		dfs(n-&gt;left, code+<span class="string">'0'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (n-&gt;right != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		dfs(n-&gt;right, code + <span class="string">'1'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">encoding</span><span class="params">(<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> result = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		result += encode.find(s[i])-&gt;second;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">decode</span><span class="params">(Node* root, <span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Node* current = root;</span><br><span class="line">	<span class="built_in">string</span> result = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (s[i] == <span class="string">'0'</span>)</span><br><span class="line">			current = current-&gt;left;</span><br><span class="line">		<span class="keyword">if</span> (s[i] == <span class="string">'1'</span>)</span><br><span class="line">			current = current-&gt;right;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (current-&gt;left == <span class="literal">NULL</span> &amp;&amp; current-&gt;right == <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			result+=current-&gt;data;</span><br><span class="line">			current = root;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	priority_queue&lt;Node*,<span class="built_in">vector</span>&lt;Node*&gt;, NodeCompare&gt; pq;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		Node* target = <span class="keyword">new</span> Node(datas[i]);</span><br><span class="line">		pq.push(target);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (pq.size() != <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		Node* left = pq.top();</span><br><span class="line">		pq.pop();</span><br><span class="line">		Node* right = pq.top();</span><br><span class="line">		pq.pop();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> newVal = (left-&gt;pri) + (right-&gt;pri);</span><br><span class="line">		pq.push(<span class="keyword">new</span> Node(&#123; newVal, <span class="string">' '</span>, left, right &#125;));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	Node* root = pq.top();</span><br><span class="line">	pq.pop();</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"encoding list:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	dfs(root, <span class="string">""</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="built_in">string</span> target = <span class="string">"ABCFFDEFABCBFFEEDDAABAB"</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"original string   -&gt;   "</span>&lt;&lt;target&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">string</span> result = encoding(target);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"converted   -&gt;   "</span>&lt;&lt; result&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; target.size() * <span class="number">8</span> &lt;&lt; <span class="string">"bit is converted to "</span> &lt;&lt; result.size()&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"converted   -&gt;   "</span>&lt;&lt;result&lt;&lt;<span class="string">"\ndecode result  -&gt;  "</span>&lt;&lt;decode(root, result);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 헥소 블로그 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="1997826239"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://xyom.github.io/2018/01/19/허프만 알고리즘/" data-id="cjclou5zy0054c1qrlfgg1n7z" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/01/18/하노이탑/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">오래된</strong>
+        <p class="article-nav-title">하노이탑 알고리즘</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">최근 글</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/19/허프만 알고리즘/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://52.79.231.100:4000/images/1516351355109.PNG)" alt="허프만 코드 알고리즘" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2018/01/19/허프만 알고리즘/" class="title">허프만 코드 알고리즘</a></p>
+                            <p class="item-date"><time datetime="2018-01-19T08:53:26.410Z" itemprop="datePublished">2018-01-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/18/하노이탑/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://cfile10.uf.tistory.com/image/1339273C5090C4BC31EF44)" alt="하노이탑 알고리즘" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2018/01/18/하노이탑/" class="title">하노이탑 알고리즘</a></p>
+                            <p class="item-date"><time datetime="2018-01-18T08:21:52.449Z" itemprop="datePublished">2018-01-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/09/가비지 컬렉션/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="가비지 컬렉션" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/JAVA/">JAVA</a></p>
+                            <p class="item-title"><a href="/2018/01/09/가비지 컬렉션/" class="title">가비지 컬렉션</a></p>
+                            <p class="item-date"><time datetime="2018-01-09T09:30:48.462Z" itemprop="datePublished">2018-01-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/09/백준 1654 랜선 자르기/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="백준 1654 랜선 자르기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2018/01/09/백준 1654 랜선 자르기/" class="title">백준 1654 랜선 자르기</a></p>
+                            <p class="item-date"><time datetime="2018-01-09T06:12:29.249Z" itemprop="datePublished">2018-01-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/08/ARP란/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/EQd/image/hwSL_46t22wErR1XzbDXlihGa3s.jpg)" alt="ARP란" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/CS/">CS</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CS/네트워크/">네트워크</a></p>
+                            <p class="item-title"><a href="/2018/01/08/ARP란/" class="title">ARP란</a></p>
+                            <p class="item-date"><time datetime="2018-01-08T10:04:07.386Z" itemprop="datePublished">2018-01-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/Database/">Database</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/ETC/">ETC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/JAVA/">JAVA</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/네트워크/">네트워크</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/운영체제/">운영체제</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/컴퓨터구조/">컴퓨터구조</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/InterView/">InterView</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Algorithm/">Algorithm</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/DataStructure/">DataStructure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Node-js/">Node js</a><span class="category-list-count">3</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12월 2017</a><span class="archive-list-count">25</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">태그</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARP란/">ARP란</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-스케줄링/">CPU 스케줄링</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DisJointSet/">DisJointSet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/InterView/">InterView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linked-List/">Linked List</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PriorityQueue/">PriorityQueue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rest-API/">Rest API</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/가비지-컬렉션이란/">가비지 컬렉션이란</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/객체-지향-프로그래밍-JAVA/">객체 지향 프로그래밍 / JAVA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-13911-집-구하기/">백준 13911 집 구하기</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-14888-연산자-끼워-넣기/">백준 14888 연산자 끼워 넣기</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-1654-랜선-자르기/">백준 1654 랜선 자르기</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-2579-계단-오르기/">백준 2579 계단 오르기</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-2661-좋은-수열/">백준 2661 좋은 수열</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-9933-민균이의-비밀번호/">백준 9933 민균이의 비밀번호</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-9935-문자열-폭발/">백준 9935 문자열 폭발</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/버블-정렬/">버블 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/병합-정렬/">병합 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/삽입-정렬/">삽입 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/선택-정렬/">선택 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/운영체제/">운영체제</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/퀵-정렬/">퀵 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/폴링-인터럽트-DMA/">폴링 , 인터럽트, DMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/프로세스/">프로세스</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/프로세스-쓰레드-동기화/">프로세스/ 쓰레드 동기화</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/하노이탑-알고리즘/">하노이탑 알고리즘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/허프만-코드-알고리즘/">허프만 코드 알고리즘</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/ARP란/" style="font-size: 10px;">ARP란</a> <a href="/tags/CPU-스케줄링/" style="font-size: 10px;">CPU 스케줄링</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/DisJointSet/" style="font-size: 10px;">DisJointSet</a> <a href="/tags/Dynamic-Programming/" style="font-size: 10px;">Dynamic Programming</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/InterView/" style="font-size: 10px;">InterView</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linked-List/" style="font-size: 10px;">Linked List</a> <a href="/tags/Node-js/" style="font-size: 20px;">Node js</a> <a href="/tags/PriorityQueue/" style="font-size: 10px;">PriorityQueue</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Rest-API/" style="font-size: 10px;">Rest API</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/가비지-컬렉션이란/" style="font-size: 10px;">가비지 컬렉션이란</a> <a href="/tags/객체-지향-프로그래밍-JAVA/" style="font-size: 10px;">객체 지향 프로그래밍 / JAVA</a> <a href="/tags/백준-13911-집-구하기/" style="font-size: 10px;">백준 13911 집 구하기</a> <a href="/tags/백준-14888-연산자-끼워-넣기/" style="font-size: 10px;">백준 14888 연산자 끼워 넣기</a> <a href="/tags/백준-1654-랜선-자르기/" style="font-size: 10px;">백준 1654 랜선 자르기</a> <a href="/tags/백준-2579-계단-오르기/" style="font-size: 10px;">백준 2579 계단 오르기</a> <a href="/tags/백준-2661-좋은-수열/" style="font-size: 10px;">백준 2661 좋은 수열</a> <a href="/tags/백준-9933-민균이의-비밀번호/" style="font-size: 10px;">백준 9933 민균이의 비밀번호</a> <a href="/tags/백준-9935-문자열-폭발/" style="font-size: 10px;">백준 9935 문자열 폭발</a> <a href="/tags/버블-정렬/" style="font-size: 10px;">버블 정렬</a> <a href="/tags/병합-정렬/" style="font-size: 10px;">병합 정렬</a> <a href="/tags/삽입-정렬/" style="font-size: 10px;">삽입 정렬</a> <a href="/tags/선택-정렬/" style="font-size: 10px;">선택 정렬</a> <a href="/tags/운영체제/" style="font-size: 15px;">운영체제</a> <a href="/tags/퀵-정렬/" style="font-size: 10px;">퀵 정렬</a> <a href="/tags/폴링-인터럽트-DMA/" style="font-size: 10px;">폴링 , 인터럽트, DMA</a> <a href="/tags/프로세스/" style="font-size: 10px;">프로세스</a> <a href="/tags/프로세스-쓰레드-동기화/" style="font-size: 10px;">프로세스/ 쓰레드 동기화</a> <a href="/tags/하노이탑-알고리즘/" style="font-size: 10px;">하노이탑 알고리즘</a> <a href="/tags/허프만-코드-알고리즘/" style="font-size: 10px;">허프만 코드 알고리즘</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 헥소 블로그 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="1997826239"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 SuHawn Yun</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'Discuss';
+    
+    
+    var disqus_url = 'http://xyom.github.io/2018/01/19/허프만 알고리즘/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
