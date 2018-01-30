@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>백준 1700 멀티탭 스케줄링 | Gunner</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Algorithm" />
+    
+    <meta name="description" content="분류는 그리디 알고리즘이며, 문제 해결 절차는 이렇습니다. 1. 내가 사용할 아이템(장비???)가 꽂혀있는지 확인합니다. 2. 1에서 꽂혀있으면 다음 장비로 넘어갑니다. 3. 1에서 꽂혀있지 않으면 비어있는 포트가 있는지 확인한다. 4. 3에서 빈 포트가 있으면 그냥 꽂는다. 5. 3에서 빈 포트가 없으면 현재 꽂혀 있는 아이템 중에 나중에 가장 늦게 사용">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="백준 1700 멀티탭 스케줄링">
+<meta property="og:url" content="http://xyom.github.io/2018/01/31/백준 1700 멀티탭 스케줄링/index.html">
+<meta property="og:site_name" content="Gunner">
+<meta property="og:description" content="분류는 그리디 알고리즘이며, 문제 해결 절차는 이렇습니다. 1. 내가 사용할 아이템(장비???)가 꽂혀있는지 확인합니다. 2. 1에서 꽂혀있으면 다음 장비로 넘어갑니다. 3. 1에서 꽂혀있지 않으면 비어있는 포트가 있는지 확인한다. 4. 3에서 빈 포트가 있으면 그냥 꽂는다. 5. 3에서 빈 포트가 없으면 현재 꽂혀 있는 아이템 중에 나중에 가장 늦게 사용">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2018-01-30T19:02:14.654Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="백준 1700 멀티탭 스케줄링">
+<meta name="twitter:description" content="분류는 그리디 알고리즘이며, 문제 해결 절차는 이렇습니다. 1. 내가 사용할 아이템(장비???)가 꽂혀있는지 확인합니다. 2. 1에서 꽂혀있으면 다음 장비로 넘어갑니다. 3. 1에서 꽂혀있지 않으면 비어있는 포트가 있는지 확인한다. 4. 3에서 빈 포트가 있으면 그냥 꽂는다. 5. 3에서 빈 포트가 없으면 현재 꽂혀 있는 아이템 중에 나중에 가장 늦게 사용">
+    
+
+    
+        <link rel="alternate" href="/" title="Gunner" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5736334637835390",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Gunner</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/">CS</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/Database/">Database</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/ETC/">ETC</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/JAVA/">JAVA</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/네트워크/">네트워크</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/운영체제/">운영체제</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CS/컴퓨터구조/">컴퓨터구조</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/InterView/">InterView</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/">Programming</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/Algorithm/">Algorithm</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/DataStructure/">DataStructure</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/JavaScript/">JavaScript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Programming/Node-js/">Node js</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Programming/Algorithm/">Algorithm</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 헥소 블로그 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="1997826239"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+				<article id="post-백준 1700 멀티탭 스케줄링" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        백준 1700 멀티탭 스케줄링
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/01/31/백준 1700 멀티탭 스케줄링/" class="article-date">
+            <time datetime="2018-01-30T19:02:14.654Z" itemprop="datePublished">2018-01-31</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>분류는 <strong>그리디 알고리즘</strong>이며,</p>
+<p>문제 해결 절차는 이렇습니다.</p>
+<p><strong>1. 내가 사용할 아이템(장비???)가 꽂혀있는지 확인합니다.</strong></p>
+<p><strong>2. 1에서 꽂혀있으면 다음 장비로 넘어갑니다.</strong></p>
+<p><strong>3. 1에서 꽂혀있지 않으면 비어있는 포트가 있는지 확인한다.</strong></p>
+<p><strong>4. 3에서 빈 포트가 있으면 그냥 꽂는다.</strong></p>
+<p><strong>5. 3에서 빈 포트가 없으면 현재 꽂혀 있는 아이템 중에 나중에 가장 늦게 사용하는 아이템 포트를 뺸다.</strong></p>
+<p><strong>6. 1~5를 반복한다.</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MOD ((int)1e9 + 9)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_SIZE (int)1e5</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 987654321</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pii pair<span class="meta-string">&lt;int, int&gt;</span></span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false); cin.tie(0);</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">bool</span> use[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">int</span> tab[<span class="number">100</span>];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>); <span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> n, nn;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; nn;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nn; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; arr[i];</span><br><span class="line">        arr[i]--;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> tabIdx = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nn; i++) &#123;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">if</span> (use[arr[i]]) <span class="keyword">continue</span>; <span class="comment">//사용하던 아이템임        </span></span><br><span class="line">                                   <span class="comment">//멀티탭 공간이 남음</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (tabIdx &lt; n) &#123;</span><br><span class="line">            tab[tabIdx++] = arr[i];</span><br><span class="line">            use[arr[i]] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">        ret++; <span class="comment">// 위 두가지 경우를 제외하고는 뽑을 수 밖에 없음.</span></span><br><span class="line"> </span><br><span class="line">        <span class="keyword">int</span> port = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> farDistance = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//멀티탭에 꽂혀있는 것을 검사</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">int</span> distance = INF;</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = i + <span class="number">1</span>; k &lt; nn; k++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (tab[j] == arr[k]) &#123;</span><br><span class="line">                    distance = k;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">if</span> (distance &gt; farDistance) &#123;</span><br><span class="line">                port = j;</span><br><span class="line">                farDistance = distance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//현재 꽂혀있는 것 중에 가장 먼 아이템을 포트에서 제거</span></span><br><span class="line">        use[tab[port]] = <span class="number">0</span>;</span><br><span class="line">        use[arr[i]] = <span class="number">1</span>;</span><br><span class="line">        tab[port] = arr[i];</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ret;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 헥소 블로그 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="1997826239"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://xyom.github.io/2018/01/31/백준 1700 멀티탭 스케줄링/" data-id="cjd20fun4001rueqra9akpyrv" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/31/백준 12100 2048/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">새로운</strong>
+        <p class="article-nav-title">
+        
+            백준 12100 2048 easy
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/01/31/백준 14500 테트로미노/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">오래된</strong>
+        <p class="article-nav-title">백준 14500 테트로미노</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">최근 글</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/31/백준 13459 째로탈출/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2018/01/31/백준 13459 째로탈출/" class="title">백준 13459 째로탈출</a></p>
+                            <p class="item-date"><time datetime="2018-01-30T19:02:14.682Z" itemprop="datePublished">2018-01-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/31/백준 12100 2048/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2018/01/31/백준 12100 2048/" class="title">백준 12100 2048 easy</a></p>
+                            <p class="item-date"><time datetime="2018-01-30T19:02:14.670Z" itemprop="datePublished">2018-01-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/31/백준 1700 멀티탭 스케줄링/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2018/01/31/백준 1700 멀티탭 스케줄링/" class="title">백준 1700 멀티탭 스케줄링</a></p>
+                            <p class="item-date"><time datetime="2018-01-30T19:02:14.654Z" itemprop="datePublished">2018-01-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/31/백준 14500 테트로미노/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2018/01/31/백준 14500 테트로미노/" class="title">백준 14500 테트로미노</a></p>
+                            <p class="item-date"><time datetime="2018-01-30T19:02:14.634Z" itemprop="datePublished">2018-01-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/31/백준 5427 불/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Programming/">Programming</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Programming/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2018/01/31/백준 5427 불/" class="title">백준 5427 불</a></p>
+                            <p class="item-date"><time datetime="2018-01-30T19:02:14.610Z" itemprop="datePublished">2018-01-31</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/Database/">Database</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/ETC/">ETC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/JAVA/">JAVA</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/네트워크/">네트워크</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/운영체제/">운영체제</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS/컴퓨터구조/">컴퓨터구조</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/InterView/">InterView</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">33</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Algorithm/">Algorithm</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/DataStructure/">DataStructure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Node-js/">Node js</a><span class="category-list-count">3</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">12월 2017</a><span class="archive-list-count">25</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">태그</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARP란/">ARP란</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-스케줄링/">CPU 스케줄링</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DisJointSet/">DisJointSet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/InterView/">InterView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linked-List/">Linked List</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PriorityQueue/">PriorityQueue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Queue/">Queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rest-API/">Rest API</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boj-5525/">boj 5525</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/가비지-컬렉션이란/">가비지 컬렉션이란</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/객체-지향-프로그래밍-JAVA/">객체 지향 프로그래밍 / JAVA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-13911-집-구하기/">백준 13911 집 구하기</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-14888-연산자-끼워-넣기/">백준 14888 연산자 끼워 넣기</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-1654-랜선-자르기/">백준 1654 랜선 자르기</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-2250-트리의-높이와-너비/">백준 2250 트리의 높이와 너비</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-2579-계단-오르기/">백준 2579 계단 오르기</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-2661-좋은-수열/">백준 2661 좋은 수열</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-5525/">백준 5525</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-9933-민균이의-비밀번호/">백준 9933 민균이의 비밀번호</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백준-9935-문자열-폭발/">백준 9935 문자열 폭발</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/버블-정렬/">버블 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/병합-정렬/">병합 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/삽입-정렬/">삽입 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/선택-정렬/">선택 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/운영체제/">운영체제</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/퀵-정렬/">퀵 정렬</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/폴링-인터럽트-DMA/">폴링 , 인터럽트, DMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/프로세스/">프로세스</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/프로세스-쓰레드-동기화/">프로세스/ 쓰레드 동기화</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/하노이탑-알고리즘/">하노이탑 알고리즘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/허프만-코드-알고리즘/">허프만 코드 알고리즘</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/ARP란/" style="font-size: 10px;">ARP란</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/CPU-스케줄링/" style="font-size: 10px;">CPU 스케줄링</a> <a href="/tags/Database/" style="font-size: 13.33px;">Database</a> <a href="/tags/DisJointSet/" style="font-size: 10px;">DisJointSet</a> <a href="/tags/Dynamic-Programming/" style="font-size: 10px;">Dynamic Programming</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/InterView/" style="font-size: 10px;">InterView</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linked-List/" style="font-size: 10px;">Linked List</a> <a href="/tags/Node-js/" style="font-size: 16.67px;">Node js</a> <a href="/tags/PriorityQueue/" style="font-size: 10px;">PriorityQueue</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Rest-API/" style="font-size: 10px;">Rest API</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/boj-5525/" style="font-size: 10px;">boj 5525</a> <a href="/tags/가비지-컬렉션이란/" style="font-size: 10px;">가비지 컬렉션이란</a> <a href="/tags/객체-지향-프로그래밍-JAVA/" style="font-size: 10px;">객체 지향 프로그래밍 / JAVA</a> <a href="/tags/백준-13911-집-구하기/" style="font-size: 10px;">백준 13911 집 구하기</a> <a href="/tags/백준-14888-연산자-끼워-넣기/" style="font-size: 10px;">백준 14888 연산자 끼워 넣기</a> <a href="/tags/백준-1654-랜선-자르기/" style="font-size: 10px;">백준 1654 랜선 자르기</a> <a href="/tags/백준-2250-트리의-높이와-너비/" style="font-size: 10px;">백준 2250 트리의 높이와 너비</a> <a href="/tags/백준-2579-계단-오르기/" style="font-size: 10px;">백준 2579 계단 오르기</a> <a href="/tags/백준-2661-좋은-수열/" style="font-size: 10px;">백준 2661 좋은 수열</a> <a href="/tags/백준-5525/" style="font-size: 10px;">백준 5525</a> <a href="/tags/백준-9933-민균이의-비밀번호/" style="font-size: 10px;">백준 9933 민균이의 비밀번호</a> <a href="/tags/백준-9935-문자열-폭발/" style="font-size: 10px;">백준 9935 문자열 폭발</a> <a href="/tags/버블-정렬/" style="font-size: 10px;">버블 정렬</a> <a href="/tags/병합-정렬/" style="font-size: 10px;">병합 정렬</a> <a href="/tags/삽입-정렬/" style="font-size: 10px;">삽입 정렬</a> <a href="/tags/선택-정렬/" style="font-size: 10px;">선택 정렬</a> <a href="/tags/운영체제/" style="font-size: 13.33px;">운영체제</a> <a href="/tags/퀵-정렬/" style="font-size: 10px;">퀵 정렬</a> <a href="/tags/폴링-인터럽트-DMA/" style="font-size: 10px;">폴링 , 인터럽트, DMA</a> <a href="/tags/프로세스/" style="font-size: 10px;">프로세스</a> <a href="/tags/프로세스-쓰레드-동기화/" style="font-size: 10px;">프로세스/ 쓰레드 동기화</a> <a href="/tags/하노이탑-알고리즘/" style="font-size: 10px;">하노이탑 알고리즘</a> <a href="/tags/허프만-코드-알고리즘/" style="font-size: 10px;">허프만 코드 알고리즘</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">링크</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 헥소 블로그 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5736334637835390"
+     data-ad-slot="1997826239"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 SuHawn Yun</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'Discuss';
+    
+    
+    var disqus_url = 'http://xyom.github.io/2018/01/31/백준 1700 멀티탭 스케줄링/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
